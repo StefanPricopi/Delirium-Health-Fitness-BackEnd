@@ -10,4 +10,5 @@ build:
 test:
   stage: test
   script:
+    - java -version  # Print Java version
     - ./gradlew test
