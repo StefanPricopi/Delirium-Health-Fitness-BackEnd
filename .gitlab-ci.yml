@@ -1,4 +1,4 @@
-image: openjdk:17
+
 
 stages:
   - build
@@ -7,10 +7,9 @@ stages:
 build:
   stage: build
   script:
-    - ./gradlew assemble --stacktrace
+    - ./gradlew assemble
 
 test:
   stage: test
   script:
-    - java -version  # Print Java version
     - ./gradlew test
