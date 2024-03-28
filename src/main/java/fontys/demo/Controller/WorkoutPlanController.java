@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/workout-plans")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class WorkoutPlanController {
 
     private final WorkoutPlanService workoutPlanService;
