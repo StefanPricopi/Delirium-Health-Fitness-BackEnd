@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class UpdateWorkoutPlanRequest {
+
     private  long id;
     @NotBlank
     private String name;

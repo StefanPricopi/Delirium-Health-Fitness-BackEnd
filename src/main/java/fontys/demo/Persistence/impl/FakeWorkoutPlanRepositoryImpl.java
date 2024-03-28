@@ -31,8 +31,8 @@ public class FakeWorkoutPlanRepositoryImpl implements WorkoutPlanRepository {
     public WorkoutPlanEntity save(WorkoutPlanEntity workoutPlanEntity) {
         workoutPlanEntity.setId(NEXT_ID);
         NEXT_ID++;
-        this.savedWorkoutPlans.add(workoutPlanEntity); // Add the provided entity instead of creating a new one
-        return workoutPlanEntity; // Return the provided entity instead of creating a new one
+        this.savedWorkoutPlans.add(workoutPlanEntity);
+        return workoutPlanEntity;
     }
 
 
