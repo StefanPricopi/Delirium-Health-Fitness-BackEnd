@@ -1,8 +1,7 @@
-
-
 stages:
   - build
   - test
+  - analyze
 
 build:
   stage: build
@@ -13,3 +12,23 @@ test:
   stage: test
   script:
     - ./gradlew test
+
+jacoco:
+  stage: test
+  script:
+    - ./gradlew jacocoTestReport
+  artifacts:
+    paths:
+      - build/reports/jacoco/test/html/
+
+sonarqube:
+  stage: analyze
+  image: openjdk:latest
+  script:
+    - ./gradlew sonarqube -Dsonar.login=$SONAR_TOKEN
+  allow_failure: true
+  only:
+    - master
+
+variables:
+  SONAR_TOKEN: "sqp_9683da089acf9a5f3741419475dd952d79c6d9f7"

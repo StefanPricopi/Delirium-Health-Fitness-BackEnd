@@ -1,17 +1,35 @@
 plugins {
     id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
+    id "org.sonarqube" version "5.0.0.4638"
+    id "jacoco"
     id 'java'
 }
 
 group = 'fontys.demo'
 version = '1.0-SNAPSHOT'
 
+sonarqube {
+    properties {
+        property "sonar.token", "sqp_415b7359db9ffee23b179c329f8ea4ba510b9439"
+        property "sonar.projectKey", "demoSonar"
+        property "sonar.projectName", "gitlabcidemo"
+        property "sonar.host.url", "http://localhost:9000/"
+    }
+}
+jacocoTestReport {
+    reports {
+        xml.required = true
+
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -27,6 +45,7 @@ dependencies {
     implementation 'org.springframework:spring-jdbc:6.1.6'
     implementation 'org.hibernate.orm:hibernate-core:6.5.0.CR2'
 }
+
 
 test {
     useJUnitPlatform()
