@@ -35,11 +35,15 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     }
     private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity workoutPlanEntity) {
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
-        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanEntity.getId()); // Fetch associated exercises
+        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanEntity.getId());
         List<Exercise> exercises = exerciseEntities.stream()
                 .map(ExerciseConverter::convert)
                 .collect(Collectors.toList());
-        workoutPlan.setExercises(exercises); // Set exercises in the workout plan
+        workoutPlan.setExercises(exercises);
+
+        // Log the exercises for debugging
+        System.out.println("Exercises for workout plan " + workoutPlanEntity.getId() + ": " + exercises);
+
         return workoutPlan;
     }
     @Override
@@ -88,11 +92,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                     .build();
         }
 
-        WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
-
-        List<Exercise> exercises = exerciseService.getExercisesByWorkoutPlanId(workoutPlanId);
-
-        workoutPlan.setExercises(exercises);
+        WorkoutPlan workoutPlan = mapToWorkoutPlan(workoutPlanEntity);
 
         return GetWorkoutPlanResponse.builder()
                 .workoutPlans(Collections.singletonList(workoutPlan))

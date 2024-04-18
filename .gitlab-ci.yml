@@ -1,12 +1,15 @@
 stages:
   - build
+  - docker-build
   - test
   - analyze
+
 
 build:
   stage: build
   script:
     - ./gradlew assemble
+
 
 test:
   stage: test
@@ -20,6 +23,18 @@ jacoco:
   artifacts:
     paths:
       - build/reports/jacoco/test/html/
+
+docker-build:
+  stage: docker-build
+  image: docker:19.03.12
+  services:
+    - docker:dind
+  script:
+    - docker build -t my-local-app-image .
+  only:
+    - master
+  tags:
+    - local
 
 sonarqube:
   stage: analyze

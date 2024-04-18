@@ -33,12 +33,6 @@ public class WorkoutPlanConverter {
         workoutPlan.setName(workoutPlanEntity.getName());
         workoutPlan.setDescription(workoutPlanEntity.getDescription());
         workoutPlan.setDurationInDays(workoutPlanEntity.getDurationInDays());
-//        if (workoutPlanEntity.getExercises() != null) {
-//            List<Exercise> exercises = workoutPlanEntity.getExercises().stream()
-//                    .map(ExerciseConverter::convert)
-//                    .collect(Collectors.toList());
-//            workoutPlan.setExercises(exercises);
-//        }
 
         return workoutPlan;
     }
