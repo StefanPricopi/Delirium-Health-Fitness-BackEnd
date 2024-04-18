@@ -2,33 +2,38 @@ package fontys.demo.business;
 
 import fontys.demo.Domain.*;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
-import fontys.demo.Persistence.ExerciseRepository;
+import fontys.demo.Persistence.impl.ExerciseJPARepository;
 import fontys.demo.business.Interfaces.ExerciseManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+
 public class ExerciseService implements ExerciseManager {
-    private final ExerciseRepository exerciseRepository;
 
+    private final ExerciseJPARepository exerciseRepository;
 
-
+    @Override
     public Exercise getExercise(Long id) {
-        ExerciseEntity exerciseEntity = exerciseRepository.findById(id);
-        return ExerciseConverter.convert(exerciseEntity);
-
+        Optional<ExerciseEntity> optionalExerciseEntity = exerciseRepository.findById(id);
+        return optionalExerciseEntity.map(ExerciseConverter::convert).orElse(null);
     }
 
+    @Override
     public List<Exercise> getExercises() {
         List<ExerciseEntity> exerciseEntities = exerciseRepository.findAll();
-        return ExerciseConverter.convertEntityList(exerciseEntities);
-        }
+        return exerciseEntities.stream()
+                .map(ExerciseConverter::convert)
+                .collect(Collectors.toList());
+    }
 
+    @Override
     public CreateExerciseResponse createExercise(CreateExerciseRequest request) {
-
         ExerciseEntity newExercise = ExerciseEntity.builder()
                 .name(request.getName())
                 .description(request.getDescription())
@@ -43,22 +48,26 @@ public class ExerciseService implements ExerciseManager {
                 .build();
     }
 
+    @Override
     public void updateExercise(Long id, UpdateExerciseRequest request) {
-        ExerciseEntity exercise = exerciseRepository.findById(id) ;
-
-
-        exercise.setName(request.getName());
-        exercise.setDescription(request.getDescription());
-        exercise.setDurationInMinutes(request.getDurationInMinutes());
-        exercise.setMuscleGroup(request.getMuscleGroup());
-
-        exerciseRepository.save(exercise);
+        Optional<ExerciseEntity> optionalExerciseEntity = exerciseRepository.findById(id);
+        optionalExerciseEntity.ifPresent(exercise -> {
+            exercise.setName(request.getName());
+            exercise.setDescription(request.getDescription());
+            exercise.setDurationInMinutes(request.getDurationInMinutes());
+            exercise.setMuscleGroup(request.getMuscleGroup());
+            exerciseRepository.save(exercise);
+        });
     }
 
+    @Override
     public void deleteExercise(Long id) {
-//        if (!exerciseRepository.existsById(id)) {
-//            throw new ExerciseNotFoundException("Exercise with id " + id + " not found");
-//    }
         exerciseRepository.deleteById(id);
+    }
+    public List<Exercise> getExercisesByWorkoutPlanId(Long workoutPlanId) {
+        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanId);
+        return exerciseEntities.stream()
+                .map(ExerciseConverter::convert)
+                .collect(Collectors.toList());
     }
 }

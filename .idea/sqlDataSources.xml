@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="61aea274-079c-4bfc-beaa-7338b4c576c9" name="dbi451040_stefindiv@mssqlstud.fhict.local Mapping">
+      <data-sources db="e7f4071c-1cba-4b95-8662-ff659d0e758e" />
+      <scope>
+        <node kind="database" qname="dbi451040_stefindiv" />
+      </scope>
+    </mapping>
+  </component>
+</project>

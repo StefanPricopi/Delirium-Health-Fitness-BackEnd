@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://mssqlstud.fhict.local;databaseName=dbi451040_stefindiv;encrypt=false
+    username: dbi451040_stefindiv
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

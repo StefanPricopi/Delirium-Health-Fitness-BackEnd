@@ -1,34 +1,46 @@
 package fontys.demo.business;
 
 import fontys.demo.Domain.*;
+import fontys.demo.Persistence.Entity.ExerciseEntity;
 import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
-import fontys.demo.Persistence.WorkoutPlanRepository;
+import fontys.demo.Persistence.impl.ExerciseJPARepository;
+import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
 import fontys.demo.business.Exceptions.WorkoutPlanNotFoundException;
 import fontys.demo.business.Interfaces.WorkoutPlanManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @Service
 @AllArgsConstructor
 public class WorkoutPlanService implements WorkoutPlanManager {
 
-    private final WorkoutPlanRepository workoutPlanRepository;
+    private final WorkoutplanJPARepository workoutPlanRepository;
+    private final ExerciseJPARepository exerciseRepository;
+    private final ExerciseService exerciseService;
+
+
     @Override
     public GetWorkoutPlanResponse getWorkoutPlans() {
         List<WorkoutPlanEntity> workoutPlanEntities = workoutPlanRepository.findAll();
         List<WorkoutPlan> workoutPlans = workoutPlanEntities.stream()
-                .map(WorkoutPlanConverter::convertWorkoutPlanEntityToWorkoutPlan)
+                .map(this::mapToWorkoutPlan)
                 .collect(Collectors.toList());
 
         return GetWorkoutPlanResponse.builder()
                 .workoutPlans(workoutPlans)
                 .build();
+    }
+    private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity workoutPlanEntity) {
+        WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
+        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanEntity.getId()); // Fetch associated exercises
+        List<Exercise> exercises = exerciseEntities.stream()
+                .map(ExerciseConverter::convert)
+                .collect(Collectors.toList());
+        workoutPlan.setExercises(exercises); // Set exercises in the workout plan
+        return workoutPlan;
     }
     @Override
     public CreateWorkoutPlanResponse createWorkoutPlan(CreateWorkoutPlanRequest request) {
@@ -43,20 +55,18 @@ public class WorkoutPlanService implements WorkoutPlanManager {
 
     @Override
     public void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request) {
-        WorkoutPlanEntity existingWorkoutPlanEntity = workoutPlanRepository.findById(workoutPlanId);
+        // Find the existing workout plan entity by ID
+        WorkoutPlanEntity existingWorkoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
+                .orElseThrow(() -> new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId));
 
-        if (existingWorkoutPlanEntity == null) {
-            throw new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId);
-        }
-
+        // Update the fields with values from the request
         existingWorkoutPlanEntity.setName(request.getName());
         existingWorkoutPlanEntity.setDescription(request.getDescription());
         existingWorkoutPlanEntity.setDurationInDays(request.getDurationInDays());
 
+        // Save the updated entity
         workoutPlanRepository.save(existingWorkoutPlanEntity);
     }
-
-
 
     @Override
     public boolean deleteWorkoutPlan(long workoutPlanId) {
@@ -67,10 +77,10 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         return true;
     }
 
-
     @Override
     public GetWorkoutPlanResponse getWorkoutPlanById(long workoutPlanId) {
-        WorkoutPlanEntity workoutPlanEntity = workoutPlanRepository.findById(workoutPlanId);
+        WorkoutPlanEntity workoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
+                .orElse(null);
         if (workoutPlanEntity == null) {
             return GetWorkoutPlanResponse.builder()
                     .error(true)
@@ -79,12 +89,13 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         }
 
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
+
+        List<Exercise> exercises = exerciseService.getExercisesByWorkoutPlanId(workoutPlanId);
+
+        workoutPlan.setExercises(exercises);
+
         return GetWorkoutPlanResponse.builder()
                 .workoutPlans(Collections.singletonList(workoutPlan))
                 .build();
     }
-
-
-
-
 }
