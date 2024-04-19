@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="sonarqube and jacoco">
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanConverter.java" afterDir="false" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="docker to ci/cd">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Exceptions/ExerciseNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -224,7 +225,8 @@
       <workItem from="1713425513173" duration="13277000" />
       <workItem from="1713445406697" duration="441000" />
       <workItem from="1713445869650" duration="512000" />
-      <workItem from="1713446730554" duration="7779000" />
+      <workItem from="1713446730554" duration="10809000" />
+      <workItem from="1713513485821" duration="1551000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -266,7 +268,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713453434910</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="docker to ci/cd">
+      <option name="closed" value="true" />
+      <created>1713458957059</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713458957059</updated>
+    </task>
+    <task id="LOCAL-00007" summary="docker to ci/cd">
+      <option name="closed" value="true" />
+      <created>1713458994065</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713458994065</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +295,7 @@
     <MESSAGE value="added cors to controller" />
     <MESSAGE value="change databases, added tests" />
     <MESSAGE value="sonarqube and jacoco" />
-    <option name="LAST_COMMIT_MESSAGE" value="sonarqube and jacoco" />
+    <MESSAGE value="docker to ci/cd" />
+    <option name="LAST_COMMIT_MESSAGE" value="docker to ci/cd" />
   </component>
 </project>
