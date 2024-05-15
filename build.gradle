@@ -20,7 +20,6 @@ sonarqube {
 jacocoTestReport {
     reports {
         xml.required = true
-
     }
 }
 
@@ -29,23 +28,25 @@ repositories {
 }
 
 dependencies {
-
     implementation 'javax.persistence:javax.persistence-api:2.2'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'
+    implementation 'org.springframework:spring-jdbc:6.1.6'
+    implementation 'org.hibernate.orm:hibernate-core:6.5.0.CR2'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mockito:mockito-core:3.+"
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11'
-    implementation 'org.springframework:spring-jdbc:6.1.6'
-    implementation 'org.hibernate.orm:hibernate-core:6.5.0.CR2'
 }
-
 
 test {
     useJUnitPlatform()
