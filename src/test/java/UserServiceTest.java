@@ -1,22 +1,27 @@
-import fontys.demo.Domain.UserDomain.*;
-import fontys.demo.Persistence.Entity.UserEntity;
-import fontys.demo.Persistence.impl.UserJPARepository;
-import fontys.demo.business.UserService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import fontys.demo.Domain.Login.LoginRequest;
+import fontys.demo.Domain.Login.LoginResponse;
+import fontys.demo.Security.Token.AccessToken;
+import fontys.demo.Security.Token.impl.AccessTokenImpl;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import fontys.demo.Domain.UserDomain.*;
+import fontys.demo.Persistence.Entity.UserEntity;
+import fontys.demo.Persistence.impl.UserJPARepository;
+import fontys.demo.Security.Token.AccessTokenEncoder;
+import fontys.demo.business.UserService;
 
 class UserServiceTest {
 
@@ -25,6 +30,9 @@ class UserServiceTest {
 
     @Mock
     private PasswordEncoder passwordEncoder;
+
+    @Mock
+    private AccessTokenEncoder accessTokenEncoder;
 
     @InjectMocks
     private UserService userService;
@@ -47,9 +55,20 @@ class UserServiceTest {
         // Assert
         assertNotNull(response);
         assertEquals("testuser", response.getUsername());
-
     }
 
+    @Test
+    void testGetUserById_NotFound() {
+        // Arrange
+        long userId = 1L;
+        when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.getUserById(userId);
+        });
+        assertEquals("User not found with id: 1", thrown.getMessage());
+    }
 
     @Test
     void testGetAllUsers() {
@@ -81,6 +100,18 @@ class UserServiceTest {
     }
 
     @Test
+    void testCreateUser_Failure() {
+        CreateUserRequest request = new CreateUserRequest("newuser", "newuser@example.com", "NewPassword123!", "ROLE_USER");
+
+        when(passwordEncoder.encode(request.getPassword())).thenThrow(new RuntimeException("Encryption failed"));
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.createUser(request);
+        });
+        assertEquals("Encryption failed", thrown.getMessage());
+    }
+
+    @Test
     void testUpdateUser() {
         UserEntity existingUser = new UserEntity(1L, "olduser", "olduser@example.com", "ROLE_USER", "old_password");
         UpdateUserRequest request = new UpdateUserRequest(1L, "updateduser", "UpdatedPassword123!", "updated@example.com", "ROLE_USER");
@@ -96,6 +127,17 @@ class UserServiceTest {
     }
 
     @Test
+    void testUpdateUser_NotFound() {
+        UpdateUserRequest request = new UpdateUserRequest(1L, "updateduser", "UpdatedPassword123!", "updated@example.com", "ROLE_USER");
+        when(userRepository.findById(1L)).thenReturn(Optional.empty());
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.updateUser(1L, request);
+        });
+        assertEquals("User not found with id: 1", thrown.getMessage());
+    }
+
+    @Test
     void testDeleteUser() {
         when(userRepository.existsById(1L)).thenReturn(true);
 
@@ -103,5 +145,58 @@ class UserServiceTest {
         verify(userRepository, times(1)).deleteById(1L);
     }
 
+    @Test
+    void testDeleteUser_NotFound() {
+        when(userRepository.existsById(1L)).thenReturn(false);
 
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.deleteUser(1L);
+        });
+        assertEquals("User not found with id: 1", thrown.getMessage());
+    }
+
+
+    @Test
+    void testLogin_UserNotFound() {
+        LoginRequest request = new LoginRequest("testuser", "password123");
+        when(userRepository.findByUsername("testuser")).thenReturn(Optional.empty());
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.login(request);
+        });
+        assertEquals("Invalid username or password", thrown.getMessage());
+    }
+
+    @Test
+    void testLogin_PasswordMismatch() {
+        LoginRequest request = new LoginRequest("testuser", "wrongpassword");
+        UserEntity userEntity = new UserEntity(1L, "testuser", "test@example.com", "ROLE_USER", passwordEncoder.encode("password123"));
+        when(userRepository.findByUsername("testuser")).thenReturn(Optional.of(userEntity));
+        when(passwordEncoder.matches("wrongpassword", userEntity.getPassword())).thenReturn(false);
+
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.login(request);
+        });
+        assertEquals("Invalid username or password", thrown.getMessage());
+    }
+
+    // New Test: Update User Password
+    @Test
+    void testUpdateUserPassword() {
+        long userId = 1L;
+        UserEntity existingUser = new UserEntity(userId, "olduser", "olduser@example.com", "ROLE_USER", "old_password");
+        when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+        when(passwordEncoder.encode("newpassword123")).thenReturn("new_encrypted_password");
+
+        UpdateUserRequest request = new UpdateUserRequest(userId, "olduser", "newpassword123", "olduser@example.com", "ROLE_USER");
+
+        UpdateUserResponse response = userService.updateUser(userId, request);
+
+        assertNotNull(response);
+        assertEquals("User updated successfully", response.getMessage());
+        assertEquals("olduser", response.getUsername());
+        assertEquals("olduser@example.com", response.getEmail());
+        verify(userRepository).save(existingUser);
+        assertEquals("new_encrypted_password", existingUser.getPassword());
+    }
 }

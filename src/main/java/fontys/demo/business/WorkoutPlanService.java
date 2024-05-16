@@ -22,7 +22,6 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     private final ExerciseJPARepository exerciseRepository;
     private final ExerciseService exerciseService;
 
-
     @Override
     public GetWorkoutPlanResponse getWorkoutPlans() {
         List<WorkoutPlanEntity> workoutPlanEntities = workoutPlanRepository.findAll();
@@ -34,6 +33,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .workoutPlans(workoutPlans)
                 .build();
     }
+
     private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity workoutPlanEntity) {
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
         List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanEntity.getId());
@@ -47,8 +47,12 @@ public class WorkoutPlanService implements WorkoutPlanManager {
 
         return workoutPlan;
     }
+
     @Override
     public CreateWorkoutPlanResponse createWorkoutPlan(CreateWorkoutPlanRequest request) {
+        if (request.getName() == null) {
+            throw new RuntimeException("Workout plan name cannot be null");
+        }
         WorkoutPlanEntity workoutPlanEntity = WorkoutPlanConverter.convertCreateWorkoutPlanRequestToEntity(request);
         workoutPlanEntity = workoutPlanRepository.save(workoutPlanEntity);
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
@@ -60,9 +64,13 @@ public class WorkoutPlanService implements WorkoutPlanManager {
 
     @Override
     public void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request) {
-
         WorkoutPlanEntity existingWorkoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
                 .orElseThrow(() -> new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId));
+
+        if (request.getExercises() == null) {
+            throw new RuntimeException("Exercises cannot be null");
+        }
+
         existingWorkoutPlanEntity.setName(request.getName());
         existingWorkoutPlanEntity.setDescription(request.getDescription());
         existingWorkoutPlanEntity.setDurationInDays(request.getDurationInDays());
@@ -79,29 +87,26 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                         existingExercise.setMuscleGroup(requestExercise.getMuscleGroup());
                         return existingExercise;
                     } else {
-
+                        // New exercise, create it
                         ExerciseEntity newExercise = new ExerciseEntity();
                         newExercise.setName(requestExercise.getName());
                         newExercise.setDescription(requestExercise.getDescription());
                         newExercise.setDurationInMinutes(requestExercise.getDurationInMinutes());
                         newExercise.setMuscleGroup(requestExercise.getMuscleGroup());
-
                         newExercise.setWorkoutPlan(existingWorkoutPlanEntity);
                         return newExercise;
                     }
                 })
                 .collect(Collectors.toList());
 
-
         existingWorkoutPlanEntity.setExercises(updatedExercises);
-
         workoutPlanRepository.save(existingWorkoutPlanEntity);
     }
 
     @Override
     public boolean deleteWorkoutPlan(long workoutPlanId) {
         if (!workoutPlanRepository.existsById(workoutPlanId)) {
-            return false;
+            throw new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId);
         }
         workoutPlanRepository.deleteById(workoutPlanId);
         return true;

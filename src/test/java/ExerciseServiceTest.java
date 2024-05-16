@@ -5,11 +5,11 @@ import fontys.demo.Domain.UpdateExerciseRequest;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
 import fontys.demo.Persistence.impl.ExerciseJPARepository;
 import fontys.demo.business.ExerciseService;
+import fontys.demo.business.Exceptions.ExerciseNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -18,8 +18,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ExerciseServiceTest {
@@ -48,6 +47,17 @@ public class ExerciseServiceTest {
     }
 
     @Test
+    public void testGetExercise_NotFound() {
+        // Arrange
+        long exerciseId = 1L;
+        when(exerciseRepositoryMock.findById(exerciseId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        Exception exception = assertThrows(ExerciseNotFoundException.class, () -> exerciseService.getExercise(exerciseId));
+        assertEquals("Exercise not found with ID: " + exerciseId, exception.getMessage());
+    }
+
+    @Test
     public void testGetExercises() {
         // Arrange
         List<ExerciseEntity> mockEntities = new ArrayList<>();
@@ -66,6 +76,19 @@ public class ExerciseServiceTest {
     }
 
     @Test
+    public void testGetExercises_Empty() {
+        // Arrange
+        when(exerciseRepositoryMock.findAll()).thenReturn(new ArrayList<>());
+
+        // Act
+        List<Exercise> results = exerciseService.getExercises();
+
+        // Assert
+        assertNotNull(results);
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
     public void testCreateExercise() {
         // Arrange
         CreateExerciseRequest request = new CreateExerciseRequest("Test Exercise", "Description", 30, "Legs");
@@ -78,6 +101,16 @@ public class ExerciseServiceTest {
         // Assert
         assertNotNull(response);
         assertNotNull(response.getExerciseId());
+    }
+
+    @Test
+    public void testCreateExercise_NullName() {
+        // Arrange
+        CreateExerciseRequest request = new CreateExerciseRequest(null, "Description", 30, "Legs");
+
+        // Act & Assert
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> exerciseService.createExercise(request));
+        assertEquals("Exercise name cannot be null", exception.getMessage());
     }
 
     @Test
@@ -100,14 +133,38 @@ public class ExerciseServiceTest {
     }
 
     @Test
+    public void testUpdateExercise_NotFound() {
+        // Arrange
+        long exerciseId = 1L;
+        UpdateExerciseRequest request = new UpdateExerciseRequest("Updated Exercise", "Updated Description", 45, "Arms");
+        when(exerciseRepositoryMock.findById(exerciseId)).thenReturn(Optional.empty());
+
+        // Act & Assert
+        Exception exception = assertThrows(ExerciseNotFoundException.class, () -> exerciseService.updateExercise(exerciseId, request));
+        assertEquals("Exercise not found with ID: " + exerciseId, exception.getMessage());
+    }
+
+    @Test
     public void testDeleteExercise() {
         // Arrange
         long exerciseId = 1L;
+        when(exerciseRepositoryMock.existsById(exerciseId)).thenReturn(true);
 
         // Act
         exerciseService.deleteExercise(exerciseId);
 
         // Assert
         verify(exerciseRepositoryMock).deleteById(exerciseId);
+    }
+
+    @Test
+    public void testDeleteExercise_NotFound() {
+        // Arrange
+        long exerciseId = 1L;
+        when(exerciseRepositoryMock.existsById(exerciseId)).thenReturn(false);
+
+        // Act & Assert
+        Exception exception = assertThrows(ExerciseNotFoundException.class, () -> exerciseService.deleteExercise(exerciseId));
+        assertEquals("Exercise not found with ID: " + exerciseId, exception.getMessage());
     }
 }

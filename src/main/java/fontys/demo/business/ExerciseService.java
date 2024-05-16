@@ -3,6 +3,7 @@ package fontys.demo.business;
 import fontys.demo.Domain.*;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
 import fontys.demo.Persistence.impl.ExerciseJPARepository;
+import fontys.demo.business.Exceptions.ExerciseNotFoundException;
 import fontys.demo.business.Interfaces.ExerciseManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-
 public class ExerciseService implements ExerciseManager {
 
     private final ExerciseJPARepository exerciseRepository;
@@ -21,7 +21,8 @@ public class ExerciseService implements ExerciseManager {
     @Override
     public Exercise getExercise(Long id) {
         Optional<ExerciseEntity> optionalExerciseEntity = exerciseRepository.findById(id);
-        return optionalExerciseEntity.map(ExerciseConverter::convert).orElse(null);
+        return optionalExerciseEntity.map(ExerciseConverter::convert)
+                .orElseThrow(() -> new ExerciseNotFoundException("Exercise not found with ID: " + id));
     }
 
     @Override
@@ -34,6 +35,10 @@ public class ExerciseService implements ExerciseManager {
 
     @Override
     public CreateExerciseResponse createExercise(CreateExerciseRequest request) {
+        if (request.getName() == null) {
+            throw new IllegalArgumentException("Exercise name cannot be null");
+        }
+
         ExerciseEntity newExercise = ExerciseEntity.builder()
                 .name(request.getName())
                 .description(request.getDescription())
@@ -50,20 +55,25 @@ public class ExerciseService implements ExerciseManager {
 
     @Override
     public void updateExercise(Long id, UpdateExerciseRequest request) {
-        Optional<ExerciseEntity> optionalExerciseEntity = exerciseRepository.findById(id);
-        optionalExerciseEntity.ifPresent(exercise -> {
-            exercise.setName(request.getName());
-            exercise.setDescription(request.getDescription());
-            exercise.setDurationInMinutes(request.getDurationInMinutes());
-            exercise.setMuscleGroup(request.getMuscleGroup());
-            exerciseRepository.save(exercise);
-        });
+        ExerciseEntity exerciseEntity = exerciseRepository.findById(id)
+                .orElseThrow(() -> new ExerciseNotFoundException("Exercise not found with ID: " + id));
+
+        exerciseEntity.setName(request.getName());
+        exerciseEntity.setDescription(request.getDescription());
+        exerciseEntity.setDurationInMinutes(request.getDurationInMinutes());
+        exerciseEntity.setMuscleGroup(request.getMuscleGroup());
+
+        exerciseRepository.save(exerciseEntity);
     }
 
     @Override
     public void deleteExercise(Long id) {
+        if (!exerciseRepository.existsById(id)) {
+            throw new ExerciseNotFoundException("Exercise not found with ID: " + id);
+        }
         exerciseRepository.deleteById(id);
     }
+
     public List<Exercise> getExercisesByWorkoutPlanId(Long workoutPlanId) {
         List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanId);
         return exerciseEntities.stream()

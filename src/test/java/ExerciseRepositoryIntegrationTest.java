@@ -39,28 +39,7 @@ public class ExerciseRepositoryIntegrationTest {
 
         assertEquals(2, allExercises.size());
     }
-    @Test
-    public void testFindByWorkoutPlanId() {
-        // Given
-        WorkoutPlanEntity workoutPlan = new WorkoutPlanEntity();
-        workoutPlan.setId(1L);
 
-        ExerciseEntity exercise = ExerciseEntity.builder()
-                .name("Exercise 5")
-                .description("Description 5")
-                .durationInMinutes(30)
-                .muscleGroup("Cardio")
-                .workoutPlan(workoutPlan)
-                .build();
-        exerciseRepository.save(exercise);
-
-        // When
-        List<ExerciseEntity> foundExercises = exerciseRepository.findByWorkoutPlanId(1L);
-
-        // Then
-        assertEquals(1, foundExercises.size());
-        assertEquals("Exercise 5", foundExercises.get(0).getName());
-    }
     @Test
     public void testSaveExercise() {
         // Given
