@@ -94,12 +94,17 @@ public class UserService {
         AccessToken accessToken = new AccessTokenImpl(
                 userEntity.getUsername(),
                 userEntity.getId(),
-                userEntity.getRoles() // Assuming roles is a single role now
+                userEntity.getRoles()
         );
 
         String token = accessTokenEncoder.encode(accessToken);
-        return new LoginResponse(token);
+
+
+        String role = userEntity.getRoles();
+
+        return new LoginResponse(token, role);
     }
+
 
 
 

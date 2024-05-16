@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class UserController {
 
     private final UserService userService;
@@ -32,8 +32,9 @@ public class UserController {
         return ResponseEntity.ok(responses);
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
+        System.out.println("Register endpoint hit with username: " + request.getUsername());
         CreateUserResponse response = userService.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
