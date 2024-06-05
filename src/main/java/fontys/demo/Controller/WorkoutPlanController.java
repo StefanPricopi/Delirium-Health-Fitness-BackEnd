@@ -18,16 +18,16 @@ public class WorkoutPlanController {
 
     private final WorkoutPlanService workoutPlanService;
 
-
     @GetMapping
     public ResponseEntity<GetWorkoutPlanResponse> getWorkoutPlans() {
         GetWorkoutPlanResponse response = workoutPlanService.getWorkoutPlans();
         return ResponseEntity.ok(response);
     }
-    @GetMapping("/by-pt")
-    public ResponseEntity<List<GetWorkoutPlanResponse>> getWorkouts(@RequestParam(required = false) Long ptId) {
-        List<GetWorkoutPlanResponse> workouts = workoutPlanService.getWorkouts(ptId);
-        return ResponseEntity.ok(workouts);
+
+    @GetMapping("/by-pt/{ptId}")
+    public ResponseEntity<List<GetWorkoutPlansByPTResponse>> getWorkoutsByPT(@PathVariable Long ptId) {
+        List<GetWorkoutPlansByPTResponse> responses = workoutPlanService.getWorkoutsByPT(ptId);
+        return ResponseEntity.ok(responses);
     }
 
     @PostMapping
@@ -66,8 +66,6 @@ public class WorkoutPlanController {
         List<WorkoutCountDTO> workoutCounts = workoutPlanService.countWorkoutsByUser();
         return ResponseEntity.ok(workoutCounts);
     }
-
-
-
 }
+
 

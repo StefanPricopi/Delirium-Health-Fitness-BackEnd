@@ -34,7 +34,6 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<CreateUserResponse> createUser(@RequestBody @Valid CreateUserRequest request) {
-
         System.out.println("Register endpoint hit with username: " + request.getUsername());
         CreateUserResponse response = userService.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -51,15 +50,23 @@ public class UserController {
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
+
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
         System.out.println("Login endpoint hit with username: " + request.getUsername());
         LoginResponse response = userService.login(request);
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("/check-username")
     public ResponseEntity<Boolean> checkUsername(@RequestParam String username) {
         boolean exists = userService.usernameExists(username);
         return ResponseEntity.ok(exists);
+    }
+
+    @GetMapping("/pts")
+    public ResponseEntity<List<GetUserResponse>> getAllPTs() {
+        List<GetUserResponse> pts = userService.getAllPTs();
+        return ResponseEntity.ok(pts);
     }
 }

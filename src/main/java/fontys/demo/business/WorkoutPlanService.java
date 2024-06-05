@@ -10,6 +10,7 @@ import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
 import fontys.demo.business.Exceptions.ExerciseNotFoundException;
 import fontys.demo.business.Exceptions.WorkoutPlanNotFoundException;
 import fontys.demo.business.Interfaces.WorkoutPlanManager;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -153,14 +154,35 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         return workoutCountDTOs;
     }
 
-    public List<GetWorkoutPlanResponse> getWorkouts(Long ptId) {
-        List<WorkoutPlanEntity> workoutPlans;
-        if (ptId != null) {
-            workoutPlans = workoutPlanRepository.findByUserId(ptId);
-        } else {
-            workoutPlans = workoutPlanRepository.findAll();
-        }
-        return workoutPlans.stream().map(this::convertToGetWorkoutPlanResponse).collect(Collectors.toList());
+    @Transactional
+    public List<GetWorkoutPlansByPTResponse> getWorkoutsByPT(Long ptId) {
+        return workoutPlanRepository.findAllByUserId(ptId).stream()
+                .map(this::convertToResponse)
+                .collect(Collectors.toList());
+    }
+
+    private GetWorkoutPlansByPTResponse convertToResponse(WorkoutPlanEntity workoutPlan) {
+        return new GetWorkoutPlansByPTResponse(
+                workoutPlan.getId(),
+                workoutPlan.getName(),
+                workoutPlan.getDescription(),
+                workoutPlan.getDurationInDays(),
+                workoutPlan.getExercises().stream()
+                        .map(this::convertExerciseToResponse)
+                        .collect(Collectors.toList())
+        );
+    }
+
+
+
+    private GetExerciseResponse convertExerciseToResponse(ExerciseEntity exercise) {
+        return new GetExerciseResponse(
+                exercise.getId(),
+                exercise.getName(),
+                exercise.getDescription(),
+                exercise.getDurationInMinutes(),
+                exercise.getMuscleGroup()
+        );
     }
 
     private GetWorkoutPlanResponse convertToGetWorkoutPlanResponse(WorkoutPlanEntity workoutPlanEntity) {
@@ -169,4 +191,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .workoutPlans(List.of(workoutPlan))
                 .build();
     }
+
+
+
 }

@@ -39,6 +39,14 @@ public class UserService {
         User user = convertEntityToDomain(userEntity);
         return new GetUserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles());
     }
+    @Transactional(readOnly = true)
+    public List<GetUserResponse> getAllPTs() {
+        return userRepository.findAll().stream()
+                .filter(user -> "PT".equals(user.getRoles()))
+                .map(this::convertEntityToDomain)
+                .map(user -> new GetUserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles()))
+                .collect(Collectors.toList());
+    }
 
     @Transactional(readOnly = true)
     public List<GetUserResponse> getAllUsers() {

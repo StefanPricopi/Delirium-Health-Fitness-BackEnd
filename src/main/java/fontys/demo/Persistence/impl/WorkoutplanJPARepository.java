@@ -13,6 +13,8 @@ public interface WorkoutplanJPARepository extends JpaRepository<WorkoutPlanEntit
     @Query("SELECT w.user.id, COUNT(w) FROM WorkoutPlanEntity w WHERE w.user.id IS NOT NULL GROUP BY w.user.id")
     List<Object[]> countWorkoutsByUser();
     List<WorkoutPlanEntity> findByUserId(Long userId);
-
-
+    List<WorkoutPlanEntity> findAllByUserId(Long userId);
 }
+
+
+
