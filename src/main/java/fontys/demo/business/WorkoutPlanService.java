@@ -2,14 +2,18 @@ package fontys.demo.business;
 
 import fontys.demo.Domain.*;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
+import fontys.demo.Persistence.Entity.UserEntity;
 import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
 import fontys.demo.Persistence.impl.ExerciseJPARepository;
+import fontys.demo.Persistence.impl.UserJPARepository;
 import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
 import fontys.demo.business.Exceptions.ExerciseNotFoundException;
 import fontys.demo.business.Exceptions.WorkoutPlanNotFoundException;
 import fontys.demo.business.Interfaces.WorkoutPlanManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +24,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
 
     private final WorkoutplanJPARepository workoutPlanRepository;
     private final ExerciseJPARepository exerciseRepository;
-    private final ExerciseService exerciseService;
+    private final UserJPARepository userRepository;
 
     @Override
     public GetWorkoutPlanResponse getWorkoutPlans() {
@@ -53,7 +57,13 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         if (request.getName() == null) {
             throw new RuntimeException("Workout plan name cannot be null");
         }
+
+        UserEntity user = userRepository.findById(request.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         WorkoutPlanEntity workoutPlanEntity = WorkoutPlanConverter.convertCreateWorkoutPlanRequestToEntity(request);
+        workoutPlanEntity.setUser(user); // Set the user
+
         workoutPlanEntity = workoutPlanRepository.save(workoutPlanEntity);
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
 
@@ -127,6 +137,36 @@ public class WorkoutPlanService implements WorkoutPlanManager {
 
         return GetWorkoutPlanResponse.builder()
                 .workoutPlans(Collections.singletonList(workoutPlan))
+                .build();
+    }
+
+    public List<WorkoutCountDTO> countWorkoutsByUser() {
+        List<Object[]> results = workoutPlanRepository.countWorkoutsByUser();
+        List<WorkoutCountDTO> workoutCountDTOs = new ArrayList<>();
+        for (Object[] result : results) {
+            if (result[0] != null && result[1] != null) {
+                Long userId = ((Number) result[0]).longValue();
+                Long workoutCount = ((Number) result[1]).longValue();
+                workoutCountDTOs.add(new WorkoutCountDTO(userId, workoutCount));
+            }
+        }
+        return workoutCountDTOs;
+    }
+
+    public List<GetWorkoutPlanResponse> getWorkouts(Long ptId) {
+        List<WorkoutPlanEntity> workoutPlans;
+        if (ptId != null) {
+            workoutPlans = workoutPlanRepository.findByUserId(ptId);
+        } else {
+            workoutPlans = workoutPlanRepository.findAll();
+        }
+        return workoutPlans.stream().map(this::convertToGetWorkoutPlanResponse).collect(Collectors.toList());
+    }
+
+    private GetWorkoutPlanResponse convertToGetWorkoutPlanResponse(WorkoutPlanEntity workoutPlanEntity) {
+        WorkoutPlan workoutPlan = mapToWorkoutPlan(workoutPlanEntity);
+        return GetWorkoutPlanResponse.builder()
+                .workoutPlans(List.of(workoutPlan))
                 .build();
     }
 }

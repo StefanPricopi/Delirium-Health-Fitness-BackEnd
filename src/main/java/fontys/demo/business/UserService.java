@@ -60,7 +60,9 @@ public class UserService {
         User savedUser = convertEntityToDomain(savedUserEntity);
         return new CreateUserResponse("User created successfully", savedUser.getId());
     }
-
+    public boolean usernameExists(String username) {
+        return userRepository.existsByUsername(username);
+    }
 
     @Transactional
     public UpdateUserResponse updateUser(long userId, UpdateUserRequest request) {

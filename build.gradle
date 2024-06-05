@@ -9,20 +9,6 @@ plugins {
 group = 'fontys.demo'
 version = '1.0-SNAPSHOT'
 
-sonarqube {
-    properties {
-        property "sonar.token", "sqp_415b7359db9ffee23b179c329f8ea4ba510b9439"
-        property "sonar.projectKey", "demoSonar"
-        property "sonar.projectName", "gitlabcidemo"
-        property "sonar.host.url", "http://localhost:9000/"
-    }
-}
-jacocoTestReport {
-    reports {
-        xml.required = true
-    }
-}
-
 repositories {
     mavenCentral()
 }
@@ -50,4 +36,19 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IndivS4"
+        property "sonar.projectName", "IndivS4"
+        property "sonar.host.url", "http://localhost:9000"
+
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
 }

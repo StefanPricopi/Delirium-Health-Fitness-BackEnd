@@ -21,6 +21,7 @@ public class CreateWorkoutPlanRequest {
     @Positive
     @NumberFormat
     private int durationInDays;
+    private Long userId;
 
     private List<Exercise> exercises;
 }

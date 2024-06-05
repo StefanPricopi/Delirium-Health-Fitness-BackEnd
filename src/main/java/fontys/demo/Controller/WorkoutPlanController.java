@@ -8,21 +8,26 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 
 @RestController
 @RequestMapping("/workout-plans")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 public class WorkoutPlanController {
 
     private final WorkoutPlanService workoutPlanService;
+
 
     @GetMapping
     public ResponseEntity<GetWorkoutPlanResponse> getWorkoutPlans() {
         GetWorkoutPlanResponse response = workoutPlanService.getWorkoutPlans();
         return ResponseEntity.ok(response);
+    }
+    @GetMapping("/by-pt")
+    public ResponseEntity<List<GetWorkoutPlanResponse>> getWorkouts(@RequestParam(required = false) Long ptId) {
+        List<GetWorkoutPlanResponse> workouts = workoutPlanService.getWorkouts(ptId);
+        return ResponseEntity.ok(workouts);
     }
 
     @PostMapping
@@ -54,5 +59,15 @@ public class WorkoutPlanController {
         GetWorkoutPlanResponse response = workoutPlanService.getWorkoutPlanById(workoutPlanId);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/counts-by-user")
+    @PreAuthorize("hasAuthority('ROLE_PT')")
+    public ResponseEntity<List<WorkoutCountDTO>> getWorkoutCountsByUser() {
+        List<WorkoutCountDTO> workoutCounts = workoutPlanService.countWorkoutsByUser();
+        return ResponseEntity.ok(workoutCounts);
+    }
+
+
+
 }
 

@@ -32,6 +32,9 @@ public class WorkoutPlanEntity {
     @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ExerciseEntity> exercises;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
 
     public WorkoutPlanEntity(String name, String description, int durationInDays) {
         this.name = name;
