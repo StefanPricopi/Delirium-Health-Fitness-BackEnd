@@ -1,4 +1,4 @@
-
+package Service;
 
 import fontys.demo.Domain.Exercise;
 import fontys.demo.Persistence.Entity.ExerciseEntity;

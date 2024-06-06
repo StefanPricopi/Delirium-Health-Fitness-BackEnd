@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] the base for sub system">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Config/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/NotificationService.java" afterDir="false" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] sub system wtih websockets">
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/NotificationServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/SubscriptionServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/WorkoutPlanControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateWorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateWorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetWorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetWorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExerciseConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ExerciseConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExerciseRepositoryIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Integration/ExerciseRepositoryIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ExerciseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/ExerciseServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/WorkoutPlanServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/WorkoutplanIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Integration/WorkoutplanIntegrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,57 +67,74 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Gradle.Build IndivBES3.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ExerciseConverterTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ExerciseRepositoryIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ExerciseServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.IndivBES3 [:KeyGeneratorUtil.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Tests in 'IndivBES3.test'.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.UserServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.UserServiceTest.testGetUserById.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkoutPlanServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkoutPlanServiceTest.testGetWorkoutPlanById_Success.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.WorkoutplanIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Main.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/alin1/Desktop/IndivBES3/src/main/java/fontys/demo/business&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build IndivBES3.executor": "Run",
+    "Gradle.ExerciseConverterTest.executor": "Run",
+    "Gradle.ExerciseRepositoryIntegrationTest.executor": "Run",
+    "Gradle.ExerciseRepositoryIntegrationTest.testSaveExercise.executor": "Run",
+    "Gradle.ExerciseServiceTest.executor": "Run",
+    "Gradle.IndivBES3 [:KeyGeneratorUtil.main()].executor": "Run",
+    "Gradle.NotificationServiceTest.testSendSubscriptionNotification.executor": "Run",
+    "Gradle.NotificationServiceTest.testSendUnsubscriptionNotification.executor": "Run",
+    "Gradle.SubscriptionServiceTest.executor": "Run",
+    "Gradle.Tests in 'IndivBES3.test'.executor": "Run",
+    "Gradle.UserServiceTest.executor": "Run",
+    "Gradle.UserServiceTest.testGetUserById.executor": "Run",
+    "Gradle.WorkoutPlanControllerTest (1).executor": "Run",
+    "Gradle.WorkoutPlanControllerTest.executor": "Run",
+    "Gradle.WorkoutPlanControllerTest.testGetAllWorkoutPlans.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testCountWorkoutsByUser.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testCreateWorkoutPlan.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testCreateWorkoutPlan_UserNotFound.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testDeleteWorkoutPlan_NotFound.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testGetWorkoutPlanById_Success.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testGetWorkoutsByPT.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testMapToExercise.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testMapToUser.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testMapToWorkoutPlan.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testMapToWorkoutPlanWithUser.executor": "Run",
+    "Gradle.WorkoutplanIntegrationTest.executor": "Run",
+    "Gradle.WorkoutplanIntegrationTest.testGetWorkoutPlans.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Main.executor": "Run",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "C:/Users/alin1/Desktop/IndivBES3/src/main/java/fontys/demo/business",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlserver&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlserver"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alin1\Desktop\IndivBES3\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main">
-    <configuration name="ExerciseConverterTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.WorkoutPlanControllerTest (1)">
+    <configuration name="WorkoutPlanControllerTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -121,7 +147,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ExerciseConverterTest&quot;" />
+            <option value="&quot;WorkoutPlanControllerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -132,7 +158,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="ExerciseServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -145,7 +171,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;ExerciseServiceTest&quot;" />
+            <option value="&quot;Controller.WorkoutPlanControllerTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -156,29 +182,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Tests in 'IndivBES3.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="UserServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanControllerTest.testGetAllWorkoutPlans" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -191,7 +195,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;UserServiceTest&quot;" />
+            <option value="&quot;Controller.WorkoutPlanControllerTest.testGetAllWorkoutPlans&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -202,7 +206,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanServiceTest.testMapToExercise" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -215,7 +219,31 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;WorkoutPlanServiceTest&quot;" />
+            <option value="&quot;WorkoutPlanServiceTest.testMapToExercise&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WorkoutPlanServiceTest.testMapToUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;WorkoutPlanServiceTest.testMapToUser&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -236,11 +264,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ExerciseConverterTest" />
-        <item itemvalue="Gradle.ExerciseServiceTest" />
-        <item itemvalue="Gradle.WorkoutPlanServiceTest" />
-        <item itemvalue="Gradle.UserServiceTest" />
-        <item itemvalue="Gradle.Tests in 'IndivBES3.test'" />
+        <item itemvalue="Gradle.WorkoutPlanControllerTest (1)" />
+        <item itemvalue="Gradle.WorkoutPlanControllerTest.testGetAllWorkoutPlans" />
+        <item itemvalue="Gradle.WorkoutPlanControllerTest" />
+        <item itemvalue="Gradle.WorkoutPlanServiceTest.testMapToUser" />
+        <item itemvalue="Gradle.WorkoutPlanServiceTest.testMapToExercise" />
       </list>
     </recent_temporary>
   </component>
@@ -278,7 +306,7 @@
       <workItem from="1715872129167" duration="2310000" />
       <workItem from="1715933115969" duration="1627000" />
       <workItem from="1717578900745" duration="17871000" />
-      <workItem from="1717661710693" duration="12470000" />
+      <workItem from="1717661710693" duration="16615000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -400,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717668359403</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="[Feature] sub system wtih websockets">
+      <option name="closed" value="true" />
+      <created>1717682984173</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1717682984173</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +456,7 @@
     <MESSAGE value="[Feature] filtering" />
     <MESSAGE value="[Feature] bug fixxing and refactoring" />
     <MESSAGE value="[Feature] the base for sub system" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feature] the base for sub system" />
+    <MESSAGE value="[Feature] sub system wtih websockets" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] sub system wtih websockets" />
   </component>
 </project>

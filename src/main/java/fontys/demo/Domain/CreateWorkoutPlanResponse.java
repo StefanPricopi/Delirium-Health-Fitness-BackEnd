@@ -1,11 +1,14 @@
 package fontys.demo.Domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateWorkoutPlanResponse {
 
         private WorkoutPlan workoutPlan;

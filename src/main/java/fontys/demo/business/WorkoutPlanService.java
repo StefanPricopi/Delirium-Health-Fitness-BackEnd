@@ -171,7 +171,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 exercise.getMuscleGroup()
         );
     }
-    private WorkoutPlan mapToWorkoutPlanWithUser(WorkoutPlanEntity entity) {
+    public WorkoutPlan mapToWorkoutPlanWithUser(WorkoutPlanEntity entity) {
         WorkoutPlan workoutPlan = mapToWorkoutPlan(entity);
         if (entity.getUser() != null) {
             User user = mapToUser(entity.getUser());
@@ -180,7 +180,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         return workoutPlan;
     }
 
-    private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity entity) {
+    public WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity entity) {
         return WorkoutPlan.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -192,7 +192,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .build();
     }
 
-    private Exercise mapToExercise(ExerciseEntity entity) {
+    public Exercise mapToExercise(ExerciseEntity entity) {
         return Exercise.builder()
                 .id(entity.getId())
                 .name(entity.getName())
@@ -202,7 +202,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .build();
     }
 
-    private User mapToUser(UserEntity entity) {
+    public User mapToUser(UserEntity entity) {
         return User.builder()
                 .id(entity.getId())
                 .username(entity.getUsername())
