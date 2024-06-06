@@ -1,8 +1,6 @@
 package fontys.demo.Controller;
 
-
 import fontys.demo.Domain.Subscription.SubscriptionRequest;
-import fontys.demo.Domain.Subscription.SubscriptionResponse;
 import fontys.demo.Persistence.Entity.SubscriptionEntity;
 import fontys.demo.business.SubscriptionService;
 import lombok.AllArgsConstructor;
@@ -20,25 +18,23 @@ public class SubscriptionController {
     private final SubscriptionService subscriptionService;
 
     @PostMapping("/subscribe")
-    public ResponseEntity<SubscriptionResponse> subscribe(@RequestBody SubscriptionRequest request) {
+    public ResponseEntity<String> subscribe(@RequestBody SubscriptionRequest request) {
         subscriptionService.subscribe(request.getUserId(), request.getPtId());
-        SubscriptionResponse response = new SubscriptionResponse(null, request.getUserId(), request.getPtId(), "Subscribed successfully");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok("Subscribed successfully");
     }
 
     @PostMapping("/unsubscribe")
-    public ResponseEntity<SubscriptionResponse> unsubscribe(@RequestBody SubscriptionRequest request) {
+    public ResponseEntity<String> unsubscribe(@RequestBody SubscriptionRequest request) {
         subscriptionService.unsubscribe(request.getUserId(), request.getPtId());
-        SubscriptionResponse response = new SubscriptionResponse(null, request.getUserId(), request.getPtId(), "Unsubscribed successfully");
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok("Unsubscribed successfully");
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<SubscriptionResponse>> listSubscriptions(@RequestParam Long userId) {
+    public ResponseEntity<List<Long>> listSubscriptions(@RequestParam Long userId) {
         List<SubscriptionEntity> subscriptions = subscriptionService.listSubscriptions(userId);
-        List<SubscriptionResponse> response = subscriptions.stream()
-                .map(sub -> new SubscriptionResponse(sub.getId(), sub.getUser().getId(), sub.getPt().getId(), null))
+        List<Long> ptIds = subscriptions.stream()
+                .map(subscription -> subscription.getPt().getId())
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ptIds);
     }
 }

@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] bug fixxing and refactoring">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Subscription/SubscriptionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Subscription/SubscriptionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/SubscriptionEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/SubscriptionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" afterDir="false" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] the base for sub system">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/NotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +278,7 @@
       <workItem from="1715872129167" duration="2310000" />
       <workItem from="1715933115969" duration="1627000" />
       <workItem from="1717578900745" duration="17871000" />
-      <workItem from="1717661710693" duration="5917000" />
+      <workItem from="1717661710693" duration="12470000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -392,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717666956142</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[Feature] the base for sub system">
+      <option name="closed" value="true" />
+      <created>1717668359403</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1717668359403</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,6 +419,7 @@
     <MESSAGE value="[Feature] statsitics for admin" />
     <MESSAGE value="[Feature] filtering" />
     <MESSAGE value="[Feature] bug fixxing and refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feature] bug fixxing and refactoring" />
+    <MESSAGE value="[Feature] the base for sub system" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] the base for sub system" />
   </component>
 </project>
