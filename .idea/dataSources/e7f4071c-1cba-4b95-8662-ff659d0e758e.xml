@@ -16731,8 +16731,8 @@
     </schema>
     <schema id="5551" parent="5510" name="dbo">
       <Current>1</Current>
-      <IntrospectionTimestamp>2024-05-15.15:11:56.780</IntrospectionTimestamp>
-      <LastIntrospectionLocalTimestamp>2024-05-15.11:11:55</LastIntrospectionLocalTimestamp>
+      <IntrospectionTimestamp>2024-06-06.14:01:50.543</IntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-06-06.10:01:49</LastIntrospectionLocalTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
     <schema id="5552" parent="5510" name="guest">
@@ -16749,7 +16749,15 @@
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
-    <table id="5555" parent="5551" name="user_entity">
+    <table id="5555" parent="5551" name="subscriptions">
+      <CreatedTimestamp>2024-06-06.13:52:40.073</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-06-06.13:52:40.287</ModifiedTimestamp>
+      <ObjectId>578101100</ObjectId>
+      <LedgerViewId>0</LedgerViewId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5556" parent="5551" name="user_entity">
       <CreatedTimestamp>2024-05-15.14:50:49.920</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2024-05-15.14:50:49.920</ModifiedTimestamp>
@@ -16757,50 +16765,50 @@
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
-    <table id="5556" parent="5551" name="users">
+    <table id="5557" parent="5551" name="users">
       <CreatedTimestamp>2024-05-15.15:10:09.900</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-05-15.15:10:09.900</ModifiedTimestamp>
+      <ModifiedTimestamp>2024-06-06.13:52:40.287</ModifiedTimestamp>
       <ObjectId>1477580302</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
-    <table id="5557" parent="5551" name="workout_plan">
+    <table id="5558" parent="5551" name="workout_plan">
       <CreatedTimestamp>2024-04-18.12:17:12.667</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
-      <ModifiedTimestamp>2024-04-18.13:32:48.253</ModifiedTimestamp>
+      <ModifiedTimestamp>2024-06-05.13:57:40.650</ModifiedTimestamp>
       <ObjectId>725577623</ObjectId>
       <LedgerViewId>0</LedgerViewId>
       <LobDataSpaceId>0</LobDataSpaceId>
     </table>
-    <column id="5558" parent="5554" name="id">
+    <column id="5559" parent="5554" name="id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(52)</SequenceIdentity>
+      <SequenceIdentity>1(89)</SequenceIdentity>
     </column>
-    <column id="5559" parent="5554" name="name">
+    <column id="5560" parent="5554" name="name">
       <DasType>nvarchar(255 char)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5560" parent="5554" name="description">
+    <column id="5561" parent="5554" name="description">
       <DasType>nvarchar(255 char)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="5561" parent="5554" name="duration_in_minutes">
+    <column id="5562" parent="5554" name="duration_in_minutes">
       <DasType>int|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="5562" parent="5554" name="muscle_group">
+    <column id="5563" parent="5554" name="muscle_group">
       <DasType>nvarchar(255 char)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="5563" parent="5554" name="workout_plan_id">
+    <column id="5564" parent="5554" name="workout_plan_id">
       <DasType>bigint|0s</DasType>
       <Position>6</Position>
     </column>
-    <foreign-key id="5564" parent="5554" name="FK3j2c27kisuw0jyqppoecd204">
+    <foreign-key id="5565" parent="5554" name="FK3j2c27kisuw0jyqppoecd204">
       <ColNames>workout_plan_id</ColNames>
       <CreatedTimestamp>2024-04-18.13:32:48.253</CreatedTimestamp>
       <ModifiedTimestamp>2024-04-18.13:32:48.253</ModifiedTimestamp>
@@ -16809,7 +16817,7 @@
       <RefTableId>725577623</RefTableId>
       <RefTableName>workout_plan</RefTableName>
     </foreign-key>
-    <foreign-key id="5565" parent="5554" name="FK_exercise_workout_plan">
+    <foreign-key id="5566" parent="5554" name="FK_exercise_workout_plan">
       <ColNames>workout_plan_id</ColNames>
       <CreatedTimestamp>2024-04-18.13:14:27.507</CreatedTimestamp>
       <ModifiedTimestamp>2024-04-18.13:14:27.507</ModifiedTimestamp>
@@ -16818,7 +16826,7 @@
       <RefTableId>725577623</RefTableId>
       <RefTableName>workout_plan</RefTableName>
     </foreign-key>
-    <index id="5566" parent="5554" name="PK__Exercise__3213E83F29154554">
+    <index id="5567" parent="5554" name="PK__Exercise__3213E83F29154554">
       <Clustering>1</Clustering>
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -16826,7 +16834,7 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5567" parent="5554" name="PK__Exercise__3213E83F29154554">
+    <key id="5568" parent="5554" name="PK__Exercise__3213E83F29154554">
       <CreatedTimestamp>2024-04-17.18:23:38.850</CreatedTimestamp>
       <ModifiedTimestamp>2024-04-17.18:23:38.850</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -16834,29 +16842,41 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Exercise__3213E83F29154554</UnderlyingIndexName>
     </key>
-    <column id="5568" parent="5555" name="id">
+    <column id="5569" parent="5555" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(2)</SequenceIdentity>
     </column>
-    <column id="5569" parent="5555" name="email">
-      <DasType>varchar(255 char)|0s</DasType>
+    <column id="5570" parent="5555" name="pt_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="5570" parent="5555" name="password">
-      <DasType>varchar(255 char)|0s</DasType>
+    <column id="5571" parent="5555" name="user_id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="5571" parent="5555" name="roles">
-      <DasType>varchar(255 char)|0s</DasType>
-      <Position>4</Position>
-    </column>
-    <column id="5572" parent="5555" name="username">
-      <DasType>varchar(255 char)|0s</DasType>
-      <Position>5</Position>
-    </column>
-    <index id="5573" parent="5555" name="PK__user_ent__3213E83F5D72C9C1">
+    <foreign-key id="5572" parent="5555" name="FK6ibnx4rmo6guhi7bs70sdvkmg">
+      <ColNames>pt_id</ColNames>
+      <CreatedTimestamp>2024-06-06.13:52:40.260</CreatedTimestamp>
+      <ModifiedTimestamp>2024-06-06.13:52:40.260</ModifiedTimestamp>
+      <ObjectId>626101271</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefTableId>1477580302</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <foreign-key id="5573" parent="5555" name="FKhro52ohfqfbay9774bev0qinr">
+      <ColNames>user_id</ColNames>
+      <CreatedTimestamp>2024-06-06.13:52:40.287</CreatedTimestamp>
+      <ModifiedTimestamp>2024-06-06.13:52:40.287</ModifiedTimestamp>
+      <ObjectId>642101328</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefTableId>1477580302</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="5574" parent="5555" name="PK__subscrip__3213E83F47B92CB7">
       <Clustering>1</Clustering>
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -16864,7 +16884,58 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5574" parent="5555" name="PK__user_ent__3213E83F5D72C9C1">
+    <index id="5575" parent="5555" name="UK8w3uap1ts292iw32da3p85xj2">
+      <ColNames>user_id
+pt_id</ColNames>
+      <Position>2</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5576" parent="5555" name="PK__subscrip__3213E83F47B92CB7">
+      <CreatedTimestamp>2024-06-06.13:52:40.097</CreatedTimestamp>
+      <ModifiedTimestamp>2024-06-06.13:52:40.097</ModifiedTimestamp>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>594101157</ObjectId>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PK__subscrip__3213E83F47B92CB7</UnderlyingIndexName>
+    </key>
+    <key id="5577" parent="5555" name="UK8w3uap1ts292iw32da3p85xj2">
+      <CreatedTimestamp>2024-06-06.13:52:40.157</CreatedTimestamp>
+      <ModifiedTimestamp>2024-06-06.13:52:40.157</ModifiedTimestamp>
+      <ObjectId>610101214</ObjectId>
+      <UnderlyingIndexName>UK8w3uap1ts292iw32da3p85xj2</UnderlyingIndexName>
+    </key>
+    <column id="5578" parent="5556" name="id">
+      <DasType>bigint|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="5579" parent="5556" name="email">
+      <DasType>varchar(255 char)|0s</DasType>
+      <Position>2</Position>
+    </column>
+    <column id="5580" parent="5556" name="password">
+      <DasType>varchar(255 char)|0s</DasType>
+      <Position>3</Position>
+    </column>
+    <column id="5581" parent="5556" name="roles">
+      <DasType>varchar(255 char)|0s</DasType>
+      <Position>4</Position>
+    </column>
+    <column id="5582" parent="5556" name="username">
+      <DasType>varchar(255 char)|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <index id="5583" parent="5556" name="PK__user_ent__3213E83F5D72C9C1">
+      <Clustering>1</Clustering>
+      <ColNames>id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <Position>1</Position>
+      <Unique>1</Unique>
+      <PartitionDataSpaceId>1</PartitionDataSpaceId>
+    </index>
+    <key id="5584" parent="5556" name="PK__user_ent__3213E83F5D72C9C1">
       <CreatedTimestamp>2024-05-15.14:50:49.920</CreatedTimestamp>
       <ModifiedTimestamp>2024-05-15.14:50:49.920</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -16872,29 +16943,29 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__user_ent__3213E83F5D72C9C1</UnderlyingIndexName>
     </key>
-    <column id="5575" parent="5556" name="id">
+    <column id="5585" parent="5557" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1</SequenceIdentity>
+      <SequenceIdentity>1(10002)</SequenceIdentity>
     </column>
-    <column id="5576" parent="5556" name="email">
+    <column id="5586" parent="5557" name="email">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="5577" parent="5556" name="password">
+    <column id="5587" parent="5557" name="password">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="5578" parent="5556" name="roles">
+    <column id="5588" parent="5557" name="roles">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="5579" parent="5556" name="username">
+    <column id="5589" parent="5557" name="username">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>5</Position>
     </column>
-    <index id="5580" parent="5556" name="PK__users__3213E83FB4F07122">
+    <index id="5590" parent="5557" name="PK__users__3213E83FB4F07122">
       <Clustering>1</Clustering>
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -16902,7 +16973,7 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5581" parent="5556" name="PK__users__3213E83FB4F07122">
+    <key id="5591" parent="5557" name="PK__users__3213E83FB4F07122">
       <CreatedTimestamp>2024-05-15.15:10:09.907</CreatedTimestamp>
       <ModifiedTimestamp>2024-05-15.15:10:09.907</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -16910,25 +16981,38 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__users__3213E83FB4F07122</UnderlyingIndexName>
     </key>
-    <column id="5582" parent="5557" name="id">
+    <column id="5592" parent="5558" name="id">
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <SequenceIdentity>1(32)</SequenceIdentity>
+      <SequenceIdentity>1(10012)</SequenceIdentity>
     </column>
-    <column id="5583" parent="5557" name="description">
+    <column id="5593" parent="5558" name="description">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="5584" parent="5557" name="duration_in_days">
+    <column id="5594" parent="5558" name="duration_in_days">
       <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="5585" parent="5557" name="name">
+    <column id="5595" parent="5558" name="name">
       <DasType>varchar(255 char)|0s</DasType>
       <Position>4</Position>
     </column>
-    <index id="5586" parent="5557" name="PK__workout___3213E83F94D0D504">
+    <column id="5596" parent="5558" name="user_id">
+      <DasType>bigint|0s</DasType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="5597" parent="5558" name="FK_WorkoutPlan_User">
+      <ColNames>user_id</ColNames>
+      <CreatedTimestamp>2024-06-05.13:57:40.650</CreatedTimestamp>
+      <ModifiedTimestamp>2024-06-05.13:57:40.650</ModifiedTimestamp>
+      <ObjectId>50099219</ObjectId>
+      <RefColNames>id</RefColNames>
+      <RefTableId>1477580302</RefTableId>
+      <RefTableName>users</RefTableName>
+    </foreign-key>
+    <index id="5598" parent="5558" name="PK__workout___3213E83F94D0D504">
       <Clustering>1</Clustering>
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
@@ -16936,7 +17020,7 @@
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
-    <key id="5587" parent="5557" name="PK__workout___3213E83F94D0D504">
+    <key id="5599" parent="5558" name="PK__workout___3213E83F94D0D504">
       <CreatedTimestamp>2024-04-18.12:17:12.673</CreatedTimestamp>
       <ModifiedTimestamp>2024-04-18.12:17:12.673</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
@@ -16944,19 +17028,27 @@
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__workout___3213E83F94D0D504</UnderlyingIndexName>
     </key>
-    <partition id="5588" parent="5566">
+    <partition id="5600" parent="5567">
       <ObjectId>72057594043301888</ObjectId>
       <Position>1</Position>
     </partition>
-    <partition id="5589" parent="5573">
+    <partition id="5601" parent="5574">
+      <ObjectId>72057594043564032</ObjectId>
+      <Position>1</Position>
+    </partition>
+    <partition id="5602" parent="5575">
+      <ObjectId>72057594043629568</ObjectId>
+      <Position>1</Position>
+    </partition>
+    <partition id="5603" parent="5583">
       <ObjectId>72057594043432960</ObjectId>
       <Position>1</Position>
     </partition>
-    <partition id="5590" parent="5580">
+    <partition id="5604" parent="5590">
       <ObjectId>72057594043498496</ObjectId>
       <Position>1</Position>
     </partition>
-    <partition id="5591" parent="5586">
+    <partition id="5605" parent="5598">
       <ObjectId>72057594043367424</ObjectId>
       <Position>1</Position>
     </partition>
