@@ -1,6 +1,7 @@
 package fontys.demo.business;
 
 import fontys.demo.Domain.*;
+import fontys.demo.Domain.UserDomain.User;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
 import fontys.demo.Persistence.Entity.UserEntity;
 import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
@@ -26,12 +27,12 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     private final WorkoutplanJPARepository workoutPlanRepository;
     private final ExerciseJPARepository exerciseRepository;
     private final UserJPARepository userRepository;
-
+    private final UserService userService;
     @Override
     public GetWorkoutPlanResponse getWorkoutPlans() {
         List<WorkoutPlanEntity> workoutPlanEntities = workoutPlanRepository.findAll();
         List<WorkoutPlan> workoutPlans = workoutPlanEntities.stream()
-                .map(this::mapToWorkoutPlan)
+                .map(this::mapToWorkoutPlanWithUser)
                 .collect(Collectors.toList());
 
         return GetWorkoutPlanResponse.builder()
@@ -39,19 +40,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .build();
     }
 
-    private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity workoutPlanEntity) {
-        WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
-        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanEntity.getId());
-        List<Exercise> exercises = exerciseEntities.stream()
-                .map(ExerciseConverter::convert)
-                .collect(Collectors.toList());
-        workoutPlan.setExercises(exercises);
 
-        // Log the exercises for debugging
-        System.out.println("Exercises for workout plan " + workoutPlanEntity.getId() + ": " + exercises);
-
-        return workoutPlan;
-    }
 
     @Override
     public CreateWorkoutPlanResponse createWorkoutPlan(CreateWorkoutPlanRequest request) {
@@ -173,8 +162,6 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         );
     }
 
-
-
     private GetExerciseResponse convertExerciseToResponse(ExerciseEntity exercise) {
         return new GetExerciseResponse(
                 exercise.getId(),
@@ -184,14 +171,43 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 exercise.getMuscleGroup()
         );
     }
+    private WorkoutPlan mapToWorkoutPlanWithUser(WorkoutPlanEntity entity) {
+        WorkoutPlan workoutPlan = mapToWorkoutPlan(entity);
+        if (entity.getUser() != null) {
+            User user = mapToUser(entity.getUser());
+            workoutPlan.setUser(user);
+        }
+        return workoutPlan;
+    }
 
-    private GetWorkoutPlanResponse convertToGetWorkoutPlanResponse(WorkoutPlanEntity workoutPlanEntity) {
-        WorkoutPlan workoutPlan = mapToWorkoutPlan(workoutPlanEntity);
-        return GetWorkoutPlanResponse.builder()
-                .workoutPlans(List.of(workoutPlan))
+    private WorkoutPlan mapToWorkoutPlan(WorkoutPlanEntity entity) {
+        return WorkoutPlan.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .durationInDays(entity.getDurationInDays())
+                .exercises(entity.getExercises().stream()
+                        .map(this::mapToExercise)
+                        .collect(Collectors.toList()))
                 .build();
     }
 
+    private Exercise mapToExercise(ExerciseEntity entity) {
+        return Exercise.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .durationInMinutes(entity.getDurationInMinutes())
+                .muscleGroup(entity.getMuscleGroup())
+                .build();
+    }
 
-
+    private User mapToUser(UserEntity entity) {
+        return User.builder()
+                .id(entity.getId())
+                .username(entity.getUsername())
+                .email(entity.getEmail())
+                .roles(entity.getRoles())
+                .build();
+    }
 }

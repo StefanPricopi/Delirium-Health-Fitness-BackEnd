@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] statsitics for admin">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetWorkoutPlansByPTResponse.java" afterDir="false" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="[Feature] filtering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/WorkoutPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/WorkoutPlanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/WorkoutplanJPARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/WorkoutplanJPARepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -277,7 +272,8 @@
       <workItem from="1715871105249" duration="334000" />
       <workItem from="1715872129167" duration="2310000" />
       <workItem from="1715933115969" duration="1627000" />
-      <workItem from="1717578900745" duration="17160000" />
+      <workItem from="1717578900745" duration="17871000" />
+      <workItem from="1717661710693" duration="4217000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -375,7 +371,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717594444415</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="[Feature] filtering">
+      <option name="closed" value="true" />
+      <created>1717625594953</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1717625594953</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,6 +396,7 @@
     <MESSAGE value="[Update] (Authentification and authorization) - made it properly send the roles and tokens" />
     <MESSAGE value="[Testing] (unit tests 85% coverage) - test all across the board" />
     <MESSAGE value="[Feature] statsitics for admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feature] statsitics for admin" />
+    <MESSAGE value="[Feature] filtering" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] filtering" />
   </component>
 </project>
