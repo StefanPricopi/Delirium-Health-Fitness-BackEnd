@@ -9,6 +9,7 @@ import fontys.demo.Persistence.impl.ExerciseJPARepository;
 import fontys.demo.Persistence.impl.UserJPARepository;
 import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
 import fontys.demo.business.Exceptions.ExerciseNotFoundException;
+import fontys.demo.business.Exceptions.UnauthorizedAccessException;
 import fontys.demo.business.Exceptions.WorkoutPlanNotFoundException;
 import fontys.demo.business.Interfaces.WorkoutPlanManager;
 import jakarta.transaction.Transactional;
@@ -63,12 +64,13 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     }
 
     @Override
-    public void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request) {
+    public void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request, Long userId) {
         WorkoutPlanEntity existingWorkoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
                 .orElseThrow(() -> new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId));
 
-        if (request.getExercises() == null) {
-            throw new RuntimeException("Exercises cannot be null");
+        // Check if the user is the owner of the workout plan
+        if (!existingWorkoutPlanEntity.getUser().getId().equals(userId)) {
+            throw new UnauthorizedAccessException("You do not have permission to modify this workout plan.");
         }
 
         existingWorkoutPlanEntity.setName(request.getName());
@@ -103,12 +105,18 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         workoutPlanRepository.save(existingWorkoutPlanEntity);
     }
 
+
     @Override
-    public boolean deleteWorkoutPlan(long workoutPlanId) {
-        if (!workoutPlanRepository.existsById(workoutPlanId)) {
-            throw new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId);
+    public boolean deleteWorkoutPlan(long workoutPlanId, Long userId) {
+        WorkoutPlanEntity workoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
+                .orElseThrow(() -> new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId));
+
+        // Check if the user is the owner of the workout plan
+        if (!workoutPlanEntity.getUser().getId().equals(userId)) {
+            throw new UnauthorizedAccessException("You do not have permission to delete this workout plan.");
         }
-        workoutPlanRepository.deleteById(workoutPlanId);
+
+        workoutPlanRepository.delete(workoutPlanEntity);
         return true;
     }
 

@@ -1,0 +1,368 @@
+@startuml
+skinparam linetype ortho
+
+' Define styles
+skinparam class {
+    BackgroundColor<<Entity>> LightBlue
+    BackgroundColor<<Repository>> LightYellow
+    BackgroundColor<<Service>> LightGreen
+    BackgroundColor<<DTO>> LightGrey
+    ArrowColor DarkBlue
+    BorderColor Black
+}
+
+' Packages for logical grouping
+package "Persistence Entity" <<Entity>> {
+    class ExerciseEntity {
+        + Long id
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class SubscriptionEntity {
+        + Long id
+    }
+
+    class UserEntity {
+        + Long id
+        + String username
+        + String password
+        + String roles
+        + String email
+    }
+
+    class WorkoutPlanEntity {
+        + Long id
+        + String name
+        + String description
+        + int durationInDays
+    }
+}
+
+package "Persistence Impl" <<Repository>> {
+    interface ExerciseJPARepository {
+        {abstract} List<ExerciseEntity> findByWorkoutPlanId(Long workoutPlanId)
+    }
+
+    interface SubscriptionRepository {
+        {abstract} List<SubscriptionEntity> findByUser(UserEntity user)
+        {abstract} List<SubscriptionEntity> findByPt(UserEntity pt)
+        {abstract} void deleteByUserAndPt(UserEntity user, UserEntity pt)
+        {abstract} boolean existsByUserAndPt(UserEntity user, UserEntity pt)
+    }
+
+    interface UserJPARepository {
+        {abstract} boolean existsByEmail(String email)
+        {abstract} Optional<UserEntity> findByUsername(String username)
+        {abstract} boolean existsByUsername(String username)
+    }
+
+    interface WorkoutplanJPARepository {
+        {abstract} List<Object[]> countWorkoutsByUser()
+        {abstract} List<WorkoutPlanEntity> findByUserId(Long userId)
+        {abstract} List<WorkoutPlanEntity> findAllByUserId(Long userId)
+    }
+}
+
+package "Business Services" <<Service>> {
+    class ExerciseService {
+        - ExerciseJPARepository exerciseRepository
+        + Exercise getExercise(Long id)
+        + List<Exercise> getExercises()
+        + CreateExerciseResponse createExercise(CreateExerciseRequest request)
+        + void updateExercise(Long id, UpdateExerciseRequest request)
+        + void deleteExercise(Long id)
+        + List<Exercise> getExercisesByWorkoutPlanId(Long workoutPlanId)
+    }
+
+    class NotificationService {
+        - SimpMessagingTemplate messagingTemplate
+        + void sendSubscriptionNotification(Long userId, Long ptId)
+        + void sendUnsubscriptionNotification(Long userId, Long ptId)
+    }
+
+    class SubscriptionService {
+        - SubscriptionRepository subscriptionRepository
+        - UserJPARepository userRepository
+        - NotificationService notificationService
+        + void subscribe(Long userId, Long ptId)
+        + void unsubscribe(Long userId, Long ptId)
+        + List<SubscriptionEntity> listSubscriptions(Long userId)
+    }
+
+    class UserService {
+        - UserJPARepository userRepository
+        - PasswordEncoder passwordEncoder
+        - AccessTokenEncoder accessTokenEncoder
+        + GetUserResponse getUserById(long userId)
+        + List<GetUserResponse> getAllPTs()
+        + List<GetUserResponse> getAllUsers()
+        + CreateUserResponse createUser(CreateUserRequest request)
+        + boolean usernameExists(String username)
+        + UpdateUserResponse updateUser(long userId, UpdateUserRequest request)
+        + LoginResponse login(LoginRequest request)
+        + void deleteUser(long userId)
+    }
+
+    class WorkoutPlanService {
+        - WorkoutplanJPARepository workoutPlanRepository
+        - ExerciseJPARepository exerciseRepository
+        - UserJPARepository userRepository
+        - UserService userService
+        + GetWorkoutPlanResponse getWorkoutPlans()
+        + CreateWorkoutPlanResponse createWorkoutPlan(CreateWorkoutPlanRequest request)
+        + void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request)
+        + boolean deleteWorkoutPlan(long workoutPlanId)
+        + GetWorkoutPlanResponse getWorkoutPlanById(long workoutPlanId)
+        + List<WorkoutCountDTO> countWorkoutsByUser()
+        + List<GetWorkoutPlansByPTResponse> getWorkoutsByPT(Long ptId)
+    }
+}
+
+package "Domain Login" <<DTO>> {
+    class LoginRequest {
+        + String username
+        + String password
+    }
+
+    class LoginResponse {
+        + String accessToken
+        + String role
+    }
+}
+
+package "Domain Subscription" <<DTO>> {
+    class SubscriptionRequest {
+        + Long userId
+        + Long ptId
+    }
+
+    class SubscriptionResponse {
+        + Long id
+        + Long userId
+        + Long ptId
+        + String message
+    }
+}
+
+package "Domain UserDomain" <<DTO>> {
+    class CreateUserRequest {
+        + String username
+        + String password
+        + String email
+        + String roles
+    }
+
+    class CreateUserResponse {
+        + String message
+        + Long userId
+    }
+
+    class GetUserResponse {
+        + Long id
+        + String username
+        + String email
+        + String roles
+    }
+
+    class UpdateUserRequest {
+        + Long id
+        + String username
+        + String password
+        + String email
+    }
+
+    class UpdateUserResponse {
+        + Long id
+        + String username
+        + String email
+        + String message
+    }
+
+    class User {
+        + Long id
+        + String username
+        + String password
+        + String roles
+        + String email
+    }
+}
+
+package "Domain" <<DTO>> {
+    class CreateExerciseRequest {
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class CreateExerciseResponse {
+        + Long exerciseId
+    }
+
+    class Exercise {
+        + Long id
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class GetExerciseResponse {
+        + Long id
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class CreateWorkoutPlanRequest {
+        + String name
+        + String description
+        + int durationInDays
+        + Long userId
+        + List<Exercise> exercises
+    }
+
+    class CreateWorkoutPlanResponse {
+        + WorkoutPlan workoutPlan
+        + boolean error
+        + String errorMessage
+    }
+
+    class GetWorkoutPlanResponse {
+        + List<WorkoutPlan> workoutPlans
+        + boolean error
+        + String errorMessage
+    }
+
+    class GetWorkoutPlansByPTResponse {
+        + Long id
+        + String name
+        + String description
+        + int durationInDays
+        + List<GetExerciseResponse> exercises
+    }
+
+    class UpdateExerciseRequest {
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class UpdateExerciseResponse {
+        + Long id
+        + String name
+        + String description
+        + int durationInMinutes
+        + String muscleGroup
+    }
+
+    class UpdateWorkoutPlanRequest {
+        + long id
+        + String name
+        + String description
+        + int durationInDays
+        + List<Exercise> exercises
+    }
+
+    class UpdateWorkoutPlanResponse {
+        + List<WorkoutPlan> workoutPlans
+    }
+
+    class WorkoutCountDTO {
+        + Long userId
+        + Long workoutCount
+    }
+
+    class WorkoutPlan {
+        + Long id
+        + String name
+        + String description
+        + int durationInDays
+        + User user
+        + List<Exercise> exercises
+    }
+
+    class WorkoutPlanResponse {
+        + Long id
+        + String name
+        + String description
+        + int durationInDays
+    }
+}
+
+' Relationships
+ExerciseEntity "0..*" -- "1" WorkoutPlanEntity : workoutPlan
+WorkoutPlanEntity "0..*" -- "1" UserEntity : user
+SubscriptionEntity "1" -- "1" UserEntity : user
+SubscriptionEntity "1" -- "1" UserEntity : pt
+WorkoutPlanEntity "1" -- "0..*" ExerciseEntity : exercises
+
+ExerciseService --|> ExerciseJPARepository
+ExerciseService --> ExerciseEntity
+ExerciseService --> CreateExerciseRequest
+ExerciseService --> CreateExerciseResponse
+ExerciseService --> UpdateExerciseRequest
+ExerciseService --> ExerciseNotFoundException
+
+NotificationService --> SimpMessagingTemplate
+
+SubscriptionService --|> SubscriptionRepository
+SubscriptionService --|> UserJPARepository
+SubscriptionService --> NotificationService
+SubscriptionService --> SubscriptionEntity
+SubscriptionService --> UserEntity
+SubscriptionService --> SubscriptionRequest
+SubscriptionService --> SubscriptionResponse
+
+UserService --|> UserJPARepository
+UserService --> PasswordEncoder
+UserService --> AccessTokenEncoder
+UserService --> UserEntity
+UserService --> GetUserResponse
+UserService --> CreateUserRequest
+UserService --> CreateUserResponse
+UserService --> UpdateUserRequest
+UserService --> UpdateUserResponse
+UserService --> LoginRequest
+UserService --> LoginResponse
+
+WorkoutPlanService --|> WorkoutplanJPARepository
+WorkoutPlanService --|> ExerciseJPARepository
+WorkoutPlanService --|> UserJPARepository
+WorkoutPlanService --> UserService
+WorkoutPlanService --> WorkoutPlanEntity
+WorkoutPlanService --> GetWorkoutPlanResponse
+WorkoutPlanService --> CreateWorkoutPlanRequest
+WorkoutPlanService --> CreateWorkoutPlanResponse
+WorkoutPlanService --> UpdateWorkoutPlanRequest
+WorkoutPlanService --> UpdateWorkoutPlanResponse
+WorkoutPlanService --> WorkoutPlanNotFoundException
+WorkoutPlanService --> ExerciseNotFoundException
+WorkoutPlanService --> WorkoutCountDTO
+WorkoutPlanService --> GetWorkoutPlansByPTResponse
+WorkoutPlanService --> GetExerciseResponse
+WorkoutPlanService --> ExerciseEntity
+WorkoutPlanService --> UserEntity
+WorkoutPlanService --> WorkoutPlan
+WorkoutPlanService --> Exercise
+WorkoutPlanService --> User
+
+ExerciseService --> Exercise
+ExerciseService --> GetExerciseResponse
+ExerciseService --> UpdateExerciseResponse
+
+User --|> UserEntity
+
+WorkoutPlan --> User
+WorkoutPlan --> Exercise
+
+CreateWorkoutPlanRequest --> Exercise
+GetWorkoutPlansByPTResponse --> GetExerciseResponse
+UpdateWorkoutPlanRequest --> Exercise
+
+@enduml

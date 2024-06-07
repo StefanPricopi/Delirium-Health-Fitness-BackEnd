@@ -19,5 +19,4 @@ public class CreateExerciseRequest {
     @NotBlank
     private String muscleGroup;
 
-    // Constructors, getters, and setters...
 }

@@ -3,6 +3,7 @@ package fontys.demo.Security.Auth;
 import fontys.demo.Security.Token.AccessToken;
 import fontys.demo.Security.Token.AccessTokenDecoder;
 import fontys.demo.Security.Token.Exception.InvalidAccessTokenException;
+import fontys.demo.business.UserDetailsImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -21,8 +21,6 @@ import java.util.Collections;
 
 @Component
 public class AuthenticationRequestFilter extends OncePerRequestFilter {
-
-    private static final String SPRING_SECURITY_ROLE_PREFIX = "ROLE_";
 
     @Autowired
     private AccessTokenDecoder accessTokenDecoder;
@@ -55,14 +53,16 @@ public class AuthenticationRequestFilter extends OncePerRequestFilter {
     }
 
     private void setupSpringSecurityContext(AccessToken accessToken) {
-        UserDetails userDetails = new User(accessToken.getSubject(), "",
-                Collections.singletonList(new SimpleGrantedAuthority(SPRING_SECURITY_ROLE_PREFIX + accessToken.getRoles())));
+        UserDetailsImpl userDetails = new UserDetailsImpl(
+                accessToken.getUserId(),
+                accessToken.getSubject(),
+                "",
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + accessToken.getRoles()))
+        );
 
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities());
-        usernamePasswordAuthenticationToken.setDetails(accessToken);
-        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        authentication.setDetails(accessToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
-
-
 }

@@ -1,5 +1,6 @@
 package fontys.demo.Controller;
 
+import fontys.demo.business.UserDetailsImpl;
 import fontys.demo.business.WorkoutPlanService;
 import fontys.demo.Domain.*;
 import jakarta.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 
 @RestController
 @RequestMapping("/workout-plans")
@@ -39,18 +41,24 @@ public class WorkoutPlanController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_PT')")
-    public ResponseEntity<Void> updateWorkoutPlan(@PathVariable("id") long workoutPlanId, @RequestBody @Valid UpdateWorkoutPlanRequest request) {
-        workoutPlanService.updateWorkoutPlan(workoutPlanId, request);
+    public ResponseEntity<Void> updateWorkoutPlan(@PathVariable("id") long workoutPlanId,
+                                                  @RequestBody @Valid UpdateWorkoutPlanRequest request,
+                                                  Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+
+        workoutPlanService.updateWorkoutPlan(workoutPlanId, request, userId);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ROLE_PT')")
-    public ResponseEntity<Void> deleteWorkoutPlan(@PathVariable("id") long workoutPlanId) {
-        boolean deleted = workoutPlanService.deleteWorkoutPlan(workoutPlanId);
-        if (!deleted) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<Void> deleteWorkoutPlan(@PathVariable("id") long workoutPlanId,
+                                                  Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        Long userId = userDetails.getId();
+
+        workoutPlanService.deleteWorkoutPlan(workoutPlanId, userId);
         return ResponseEntity.noContent().build();
     }
 
