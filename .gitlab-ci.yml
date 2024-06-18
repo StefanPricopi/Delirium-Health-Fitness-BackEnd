@@ -4,6 +4,7 @@ variables:
 
 stages:
   - build
+  - docker-build
   - test
   - analyze
 
@@ -16,6 +17,21 @@ test:
   stage: test
   script:
     - ./gradlew test
+  artifacts:
+    paths:
+      - build/reports/tests/test
+
+docker-build:
+  stage: docker-build
+  image: docker:19.03.12
+  services:
+    - docker:dind
+  script:
+    - docker build -t my-local-app-image .
+  only:
+    - master
+  tags:
+    - local
 
 jacoco:
   stage: test
@@ -28,10 +44,11 @@ jacoco:
 
 sonarqube:
   stage: analyze
-  image: openjdk:latest
+  image: gradle:jdk11
+  dependencies:
+    - jacoco
   script:
-    ./gradlew -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml sonarqube
-
+    - ./gradlew -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml sonarqube
   allow_failure: true
   only:
     - master
