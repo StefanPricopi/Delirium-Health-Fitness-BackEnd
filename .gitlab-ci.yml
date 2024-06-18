@@ -40,7 +40,7 @@ build_image:
 sonar:
   stage: sonar
   script:
-    - ./gradlew sonarqube -Dsonar.host.url="http://localhost:9000" -Dsonar.login="$SONAR_TOKEN" -Dsonar.java.binaries="src/main/java" -Dsonar.jacoco.reportPaths="build/reports/jacoco/test/jacocoTestReport.xml"
+    - ./gradlew sonarqube -Dsonar.host.url="http://localhost:9000" -Dsonar.login="$SONAR_TOKEN" -Dsonar.java.binaries="build/classes/java/main" -Dsonar.jacoco.reportPaths="build/reports/jacoco/test/jacocoTestReport.xml"
   dependencies:
     - test
   allow_failure: true
