@@ -32,17 +32,15 @@ build_image:
     - docker:dind
   before_script:
     - docker info
-    - docker login -u  stefanpricopi -p dt8W/c!Kd%sWqnL
+    - docker login -u stefanpricopi -p dt8W/c!Kd%sWqnL
   script:
-    - docker build -t  stefanpricopi/your-repo:latest .
-    - docker push  stefanpricopi/your-repo:latest
+    - docker build -t stefanpricopi/your-repo:latest .
+    - docker push stefanpricopi/your-repo:latest
 
 sonar:
   stage: sonar
   script:
-    - ./gradlew sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.token=$SONAR_TOKEN -Dsonar.java.binaries=src/main/java -Dsonar.jacoco.reportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+    - ./gradlew sonarqube -Dsonar.host.url="http://localhost:9000" -Dsonar.login="$SONAR_TOKEN" -Dsonar.java.binaries="src/main/java" -Dsonar.jacoco.reportPaths="build/reports/jacoco/test/jacocoTestReport.xml"
   dependencies:
     - test
   allow_failure: true
-
-
