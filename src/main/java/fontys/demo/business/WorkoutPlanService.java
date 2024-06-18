@@ -28,7 +28,6 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     private final WorkoutplanJPARepository workoutPlanRepository;
     private final ExerciseJPARepository exerciseRepository;
     private final UserJPARepository userRepository;
-    private final UserService userService;
     @Override
     public GetWorkoutPlanResponse getWorkoutPlans() {
         List<WorkoutPlanEntity> workoutPlanEntities = workoutPlanRepository.findAll();
@@ -63,7 +62,6 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .build();
     }
 
-    @Override
     public void updateWorkoutPlan(long workoutPlanId, UpdateWorkoutPlanRequest request, Long userId) {
         WorkoutPlanEntity existingWorkoutPlanEntity = workoutPlanRepository.findById(workoutPlanId)
                 .orElseThrow(() -> new WorkoutPlanNotFoundException("Workout plan not found with ID: " + workoutPlanId));
@@ -90,19 +88,23 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                         return existingExercise;
                     } else {
                         // New exercise, create it
-                        ExerciseEntity newExercise = new ExerciseEntity();
-                        newExercise.setName(requestExercise.getName());
-                        newExercise.setDescription(requestExercise.getDescription());
-                        newExercise.setDurationInMinutes(requestExercise.getDurationInMinutes());
-                        newExercise.setMuscleGroup(requestExercise.getMuscleGroup());
-                        newExercise.setWorkoutPlan(existingWorkoutPlanEntity);
-                        return newExercise;
+                        return getExerciseEntity(requestExercise, existingWorkoutPlanEntity);
                     }
                 })
                 .collect(Collectors.toList());
 
         existingWorkoutPlanEntity.setExercises(updatedExercises);
         workoutPlanRepository.save(existingWorkoutPlanEntity);
+    }
+
+    private static ExerciseEntity getExerciseEntity(Exercise requestExercise, WorkoutPlanEntity existingWorkoutPlanEntity) {
+        ExerciseEntity newExercise = new ExerciseEntity();
+        newExercise.setName(requestExercise.getName());
+        newExercise.setDescription(requestExercise.getDescription());
+        newExercise.setDurationInMinutes(requestExercise.getDurationInMinutes());
+        newExercise.setMuscleGroup(requestExercise.getMuscleGroup());
+        newExercise.setWorkoutPlan(existingWorkoutPlanEntity);
+        return newExercise;
     }
 
 

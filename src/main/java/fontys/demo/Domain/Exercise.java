@@ -18,4 +18,7 @@ public class Exercise {
 
     public Exercise(Long id, String name, String description) {
     }
+
+    public Exercise(String name, String description, int durationInMinutes, String muscleGroup) {
+    }
 }

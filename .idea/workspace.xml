@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="fixed broken access role">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="test for pipeline">
+      <change afterPath="$PROJECT_DIR$/src/test/java/Service/CustomUserDetailsServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Integration/WorkoutplanIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Integration/WorkoutplanIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +61,7 @@
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
     "Gradle.Build IndivBES3.executor": "Run",
+    "Gradle.CustomUserDetailsServiceTest.executor": "Run",
     "Gradle.ExerciseConverterTest.executor": "Run",
     "Gradle.ExerciseRepositoryIntegrationTest.executor": "Run",
     "Gradle.ExerciseRepositoryIntegrationTest.testSaveExercise.executor": "Run",
@@ -78,6 +80,7 @@
     "Gradle.WorkoutPlanServiceTest.testCountWorkoutsByUser.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testCreateWorkoutPlan.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testCreateWorkoutPlan_UserNotFound.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testDeleteWorkoutPlan.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testDeleteWorkoutPlan_NotFound.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testGetWorkoutPlanById_Success.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testGetWorkoutsByPT.executor": "Run",
@@ -86,6 +89,8 @@
     "Gradle.WorkoutPlanServiceTest.testMapToWorkoutPlan.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testMapToWorkoutPlanWithUser.executor": "Run",
     "Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success.executor": "Run",
+    "Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success.executor": "Run",
     "Gradle.WorkoutplanIntegrationTest.executor": "Run",
     "Gradle.WorkoutplanIntegrationTest.testDeleteWorkoutPlan.executor": "Run",
     "Gradle.WorkoutplanIntegrationTest.testGetWorkoutPlans.executor": "Run",
@@ -129,7 +134,31 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan">
+  <component name="RunManager" selected="Gradle.CustomUserDetailsServiceTest">
+    <configuration name="CustomUserDetailsServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;Service.CustomUserDetailsServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="WorkoutPlanServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -154,7 +183,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest.testUpdateWorkoutPlan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanServiceTest.testDeleteWorkoutPlan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -167,7 +196,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Service.WorkoutPlanServiceTest.testUpdateWorkoutPlan&quot;" />
+            <option value="&quot;Service.WorkoutPlanServiceTest.testDeleteWorkoutPlan&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -178,7 +207,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutplanIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -191,7 +220,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Integration.WorkoutplanIntegrationTest&quot;" />
+            <option value="&quot;Service.WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -202,7 +231,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutplanIntegrationTest.testDeleteWorkoutPlan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -215,31 +244,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Integration.WorkoutplanIntegrationTest.testDeleteWorkoutPlan&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="WorkoutplanIntegrationTest.testUpdateWorkoutPlan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;Integration.WorkoutplanIntegrationTest.testUpdateWorkoutPlan&quot;" />
+            <option value="&quot;Service.WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -260,11 +265,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan" />
+        <item itemvalue="Gradle.CustomUserDetailsServiceTest" />
         <item itemvalue="Gradle.WorkoutPlanServiceTest" />
-        <item itemvalue="Gradle.WorkoutplanIntegrationTest" />
-        <item itemvalue="Gradle.WorkoutplanIntegrationTest.testUpdateWorkoutPlan" />
-        <item itemvalue="Gradle.WorkoutplanIntegrationTest.testDeleteWorkoutPlan" />
+        <item itemvalue="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success" />
+        <item itemvalue="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success" />
+        <item itemvalue="Gradle.WorkoutPlanServiceTest.testDeleteWorkoutPlan" />
       </list>
     </recent_temporary>
   </component>
@@ -306,7 +311,8 @@
       <workItem from="1717750115270" duration="408000" />
       <workItem from="1717750534980" duration="1051000" />
       <workItem from="1717761249757" duration="4144000" />
-      <workItem from="1718706028860" duration="1719000" />
+      <workItem from="1718706028860" duration="3448000" />
+      <workItem from="1718709490473" duration="712000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -460,7 +466,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717764169313</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="test for pipeline">
+      <option name="closed" value="true" />
+      <created>1718708252831</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1718708252831</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -483,6 +497,7 @@
     <MESSAGE value="[Feature] sub system wtih websockets" />
     <MESSAGE value="unit tests for all the new additions" />
     <MESSAGE value="fixed broken access role" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed broken access role" />
+    <MESSAGE value="test for pipeline" />
+    <option name="LAST_COMMIT_MESSAGE" value="test for pipeline" />
   </component>
 </project>

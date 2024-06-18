@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 @Data
 @AllArgsConstructor
@@ -23,5 +25,5 @@ public class UpdateWorkoutPlanRequest {
     @Positive
     @NumberFormat
     private int durationInDays;
-    private List<Exercise> exercises;
+    private List<Exercise> exercises = new ArrayList<>();
 }

@@ -2,28 +2,21 @@ package Service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import fontys.demo.Domain.*;
 import fontys.demo.Domain.UserDomain.User;
 import fontys.demo.Persistence.Entity.ExerciseEntity;
 import fontys.demo.Persistence.Entity.UserEntity;
 import fontys.demo.Persistence.impl.UserJPARepository;
-import org.junit.jupiter.api.BeforeEach;
+import fontys.demo.business.WorkoutPlanService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import fontys.demo.business.ExerciseService;
-import fontys.demo.business.WorkoutPlanService;
 import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
-import fontys.demo.Persistence.impl.ExerciseJPARepository;
 import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
 
 @ExtendWith(MockitoExtension.class)
@@ -96,9 +89,7 @@ public class WorkoutPlanServiceTest {
         request.setDurationInDays(10);
 
         // Act & Assert
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            workoutPlanService.createWorkoutPlan(request);
-        });
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> workoutPlanService.createWorkoutPlan(request));
         assertEquals("Workout plan name cannot be null", thrown.getMessage());
     }
 
@@ -119,39 +110,45 @@ public class WorkoutPlanServiceTest {
                 .thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            workoutPlanService.updateWorkoutPlan(workoutPlanId, request,1L);
-        });
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> workoutPlanService.updateWorkoutPlan(workoutPlanId, request,1L));
         assertEquals("Workout plan not found with ID: " + workoutPlanId, thrown.getMessage());
     }
 
 
     @Test
-    public void testGetWorkoutPlanById_Success() {
-        // Arrange
+    public void testUpdateWorkoutPlan_Success() {
+        // Given
         long workoutPlanId = 1L;
+        long userId = 1L;
+
         UserEntity user = new UserEntity();
-        user.setId(1L);
+        user.setId(userId);
 
-        WorkoutPlanEntity workoutPlanEntity = WorkoutPlanEntity.builder()
-                .id(workoutPlanId)
-                .name("Test Workout Plan")
-                .description("Test Description")
-                .durationInDays(10)
-                .exercises(Collections.emptyList())
-                .user(user)
-                .build();
+        WorkoutPlanEntity existingWorkoutPlan = new WorkoutPlanEntity();
+        existingWorkoutPlan.setId(workoutPlanId);
+        existingWorkoutPlan.setUser(user);
+        existingWorkoutPlan.setName("Old Plan Name");
+        existingWorkoutPlan.setDescription("Old Description");
+        existingWorkoutPlan.setDurationInDays(10);
 
-        when(workoutplanRepositoryMock.findById(workoutPlanId)).thenReturn(Optional.of(workoutPlanEntity));
+        UpdateWorkoutPlanRequest request = new UpdateWorkoutPlanRequest();
+        request.setName("Updated Plan Name");
+        request.setDescription("Updated Description");
+        request.setDurationInDays(30);
 
-        // Act
-        GetWorkoutPlanResponse response = workoutPlanService.getWorkoutPlanById(workoutPlanId);
+        when(workoutplanRepositoryMock.findById(workoutPlanId)).thenReturn(Optional.of(existingWorkoutPlan));
+        when(workoutplanRepositoryMock.save(any(WorkoutPlanEntity.class))).thenReturn(existingWorkoutPlan);
 
-        // Assert
-        assertNotNull(response);
-        assertEquals(1, response.getWorkoutPlans().size());
-        assertEquals(workoutPlanId, response.getWorkoutPlans().get(0).getId());
-        assertEquals("Test Workout Plan", response.getWorkoutPlans().get(0).getName());
+        // When
+        workoutPlanService.updateWorkoutPlan(workoutPlanId, request, userId);
+
+        // Then
+        verify(workoutplanRepositoryMock, times(1)).findById(workoutPlanId);
+        verify(workoutplanRepositoryMock, times(1)).save(any(WorkoutPlanEntity.class));
+
+        assertEquals("Updated Plan Name", existingWorkoutPlan.getName());
+        assertEquals("Updated Description", existingWorkoutPlan.getDescription());
+        assertEquals(30, existingWorkoutPlan.getDurationInDays());
     }
 
     @Test
@@ -227,9 +224,7 @@ public class WorkoutPlanServiceTest {
         when(userRepositoryMock.findById(1L)).thenReturn(Optional.empty());
 
         // Act & Assert
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            workoutPlanService.createWorkoutPlan(request);
-        });
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> workoutPlanService.createWorkoutPlan(request));
         assertEquals("User not found", thrown.getMessage());
     }
     @Test
