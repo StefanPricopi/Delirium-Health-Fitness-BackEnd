@@ -1,7 +1,5 @@
 package fontys.demo.Security.Token;
 
-import java.util.Set;
-
 public interface AccessToken {
     String getSubject();
 
@@ -9,5 +7,5 @@ public interface AccessToken {
 
     String getRoles();
 
-    boolean hasRole(String roleName);
+
 }

@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.NumberFormat;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 @Data

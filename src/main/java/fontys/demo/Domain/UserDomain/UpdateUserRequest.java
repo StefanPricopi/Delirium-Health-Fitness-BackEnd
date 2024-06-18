@@ -30,7 +30,7 @@ public class UpdateUserRequest {
     @Email(message = "Email should be valid")
     private String email;
 
-    public UpdateUserRequest(long l, String updateduser, String s, String mail, String roleUser) {
+    public UpdateUserRequest(long l, String updateduser, String s, String mail) {
         this.id=l;
         this.username=updateduser;
         this.password=s;

@@ -1,7 +1,6 @@
 package fontys.demo.Domain;
 
 import fontys.demo.Domain.UserDomain.User;
-import fontys.demo.Persistence.Entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

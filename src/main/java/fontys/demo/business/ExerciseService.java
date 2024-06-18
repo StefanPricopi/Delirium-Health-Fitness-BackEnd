@@ -74,10 +74,4 @@ public class ExerciseService implements ExerciseManager {
         exerciseRepository.deleteById(id);
     }
 
-    public List<Exercise> getExercisesByWorkoutPlanId(Long workoutPlanId) {
-        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByWorkoutPlanId(workoutPlanId);
-        return exerciseEntities.stream()
-                .map(ExerciseConverter::convert)
-                .collect(Collectors.toList());
-    }
 }

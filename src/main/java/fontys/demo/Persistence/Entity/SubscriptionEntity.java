@@ -1,6 +1,5 @@
 package fontys.demo.Persistence.Entity;
 
-import fontys.demo.Domain.UserDomain.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

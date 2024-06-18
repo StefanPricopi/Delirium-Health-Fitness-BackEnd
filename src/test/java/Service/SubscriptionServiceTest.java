@@ -69,9 +69,7 @@ public class SubscriptionServiceTest {
         when(userRepositoryMock.findById(userId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            subscriptionService.subscribe(userId, ptId);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> subscriptionService.subscribe(userId, ptId));
 
         assertEquals("User not found", exception.getMessage());
     }
@@ -91,9 +89,7 @@ public class SubscriptionServiceTest {
         when(subscriptionRepositoryMock.existsByUserAndPt(user, pt)).thenReturn(true);
 
         // Act & Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            subscriptionService.subscribe(userId, ptId);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> subscriptionService.subscribe(userId, ptId));
 
         assertEquals("Already subscribed", exception.getMessage());
     }
@@ -128,9 +124,7 @@ public class SubscriptionServiceTest {
         when(userRepositoryMock.findById(userId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            subscriptionService.unsubscribe(userId, ptId);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> subscriptionService.unsubscribe(userId, ptId));
 
         assertEquals("User not found", exception.getMessage());
     }
@@ -165,9 +159,7 @@ public class SubscriptionServiceTest {
         when(userRepositoryMock.findById(userId)).thenReturn(Optional.empty());
 
         // Act & Assert
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            subscriptionService.listSubscriptions(userId);
-        });
+        Exception exception = assertThrows(RuntimeException.class, () -> subscriptionService.listSubscriptions(userId));
 
         assertEquals("User not found", exception.getMessage());
     }

@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 userEntity.getId(),
                 userEntity.getUsername(),
                 userEntity.getPassword(),
-                Collections.singleton(() -> userEntity.getRoles())
+                Collections.singleton(userEntity::getRoles)
         );
     }
 }
