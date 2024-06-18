@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="test for pipeline">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Service/CustomUserDetailsServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="removed unused imports" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -312,7 +305,7 @@
       <workItem from="1717750534980" duration="1051000" />
       <workItem from="1717761249757" duration="4144000" />
       <workItem from="1718706028860" duration="3448000" />
-      <workItem from="1718709490473" duration="712000" />
+      <workItem from="1718709490473" duration="1324000" />
     </task>
     <task id="LOCAL-00001" summary="added docker to backend">
       <option name="closed" value="true" />
@@ -474,7 +467,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718708252831</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="test for pipeline">
+      <option name="closed" value="true" />
+      <created>1718710235126</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1718710235126</updated>
+    </task>
+    <task id="LOCAL-00022" summary="removed unused imports">
+      <option name="closed" value="true" />
+      <created>1718710805214</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718710805214</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,6 +507,7 @@
     <MESSAGE value="unit tests for all the new additions" />
     <MESSAGE value="fixed broken access role" />
     <MESSAGE value="test for pipeline" />
-    <option name="LAST_COMMIT_MESSAGE" value="test for pipeline" />
+    <MESSAGE value="removed unused imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unused imports" />
   </component>
 </project>

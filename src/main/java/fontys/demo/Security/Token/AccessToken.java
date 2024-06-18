@@ -7,5 +7,5 @@ public interface AccessToken {
 
     String getRoles();
 
-
+    boolean hasRole(String roleName);
 }
