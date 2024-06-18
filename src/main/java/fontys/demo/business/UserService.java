@@ -1,23 +1,24 @@
 package fontys.demo.business;
 
-import fontys.demo.Domain.Login.LoginRequest;
-import fontys.demo.Domain.Login.LoginResponse;
-import fontys.demo.Domain.UserDomain.*;
-import fontys.demo.Persistence.Entity.UserEntity;
-import fontys.demo.Persistence.impl.UserJPARepository;
-import fontys.demo.Security.Token.AccessToken;
-import fontys.demo.Security.Token.AccessTokenEncoder;
-import fontys.demo.Security.Token.impl.AccessTokenImpl;
+import fontys.demo.domain.login.LoginRequest;
+import fontys.demo.domain.login.LoginResponse;
+import fontys.demo.domain.userDomain.*;
+import fontys.demo.persistence.entity.UserEntity;
+import fontys.demo.persistence.impl.UserJPARepository;
+import fontys.demo.security.token.AccessToken;
+import fontys.demo.security.token.AccessTokenEncoder;
+import fontys.demo.security.token.impl.AccessTokenImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class UserService {
+
+    private static final String USER_NOT_FOUND_MSG = "User not found with id: ";
 
     @Autowired
     private UserJPARepository userRepository;
@@ -34,17 +35,18 @@ public class UserService {
     @Transactional(readOnly = true)
     public GetUserResponse getUserById(long userId) {
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+                .orElseThrow(() -> new RuntimeException(USER_NOT_FOUND_MSG + userId));
         User user = convertEntityToDomain(userEntity);
         return new GetUserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles());
     }
+
     @Transactional(readOnly = true)
     public List<GetUserResponse> getAllPTs() {
         return userRepository.findAll().stream()
                 .filter(user -> "PT".equals(user.getRoles()))
                 .map(this::convertEntityToDomain)
                 .map(user -> new GetUserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -52,7 +54,7 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(this::convertEntityToDomain)
                 .map(user -> new GetUserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRoles()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional
@@ -67,6 +69,7 @@ public class UserService {
         User savedUser = convertEntityToDomain(savedUserEntity);
         return new CreateUserResponse("User created successfully", savedUser.getId());
     }
+
     public boolean usernameExists(String username) {
         return userRepository.existsByUsername(username);
     }
@@ -74,7 +77,7 @@ public class UserService {
     @Transactional
     public UpdateUserResponse updateUser(long userId, UpdateUserRequest request) {
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+                .orElseThrow(() -> new RuntimeException(USER_NOT_FOUND_MSG + userId));
         userEntity.setUsername(request.getUsername());
         userEntity.setPassword(passwordEncoder.encode(request.getPassword())); // Remember to hash the password
         userEntity.setEmail(request.getEmail());
@@ -108,19 +111,15 @@ public class UserService {
 
         String token = accessTokenEncoder.encode(accessToken);
 
-
         String role = userEntity.getRoles();
 
         return new LoginResponse(token, role);
     }
 
-
-
-
     @Transactional
     public void deleteUser(long userId) {
         if (!userRepository.existsById(userId)) {
-            throw new RuntimeException("User not found with id: " + userId);
+            throw new RuntimeException(USER_NOT_FOUND_MSG + userId);
         }
         userRepository.deleteById(userId);
     }

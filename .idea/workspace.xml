@@ -4,7 +4,89 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="removed unused imports" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="removed unused imports">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/AlreadySubscribedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/PTNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e7f4071c-1cba-4b95-8662-ff659d0e758e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e7f4071c-1cba-4b95-8662-ff659d0e758e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain_model.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain_model.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Config/KeyGeneratorUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/config/KeyGeneratorUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/ExerciseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/controller/ExerciseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/controller/SubscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Controller/WorkoutPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/controller/WorkoutPlanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateExerciseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/CreateExerciseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateExerciseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/CreateExerciseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateWorkoutPlanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/CreateWorkoutPlanRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/CreateWorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/CreateWorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Exercise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/Exercise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetExerciseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/GetExerciseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetWorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/GetWorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/GetWorkoutPlansByPTResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/GetWorkoutPlansByPTResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Login/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/login/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Login/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/login/LoginResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Subscription/SubscriptionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/subscription/SubscriptionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/Subscription/SubscriptionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/subscription/SubscriptionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateExerciseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/UpdateExerciseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateExerciseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/UpdateExerciseResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/UpdateWorkoutPlanRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UpdateWorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/UpdateWorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/CreateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/CreateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/CreateUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/CreateUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/GetUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/GetUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/UpdateUserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/UpdateUserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/UpdateUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/UpdateUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/UserDomain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/userDomain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/WorkoutCountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/WorkoutCountDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/WorkoutPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/WorkoutPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Domain/WorkoutPlanResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/domain/WorkoutPlanResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/ExerciseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/entity/ExerciseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/SubscriptionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/entity/SubscriptionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/Entity/WorkoutPlanEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/entity/WorkoutPlanEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/ExerciseJPARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/impl/ExerciseJPARepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/impl/SubscriptionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/UserJPARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/impl/UserJPARepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Persistence/impl/WorkoutplanJPARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/persistence/impl/WorkoutplanJPARepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Auth/AuthenticationRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/auth/AuthenticationRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Auth/Http401UnauthorizedEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/auth/Http401UnauthorizedEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Auth/RequestAuthenticatedUserProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/auth/RequestAuthenticatedUserProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/AccessToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/AccessToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/AccessTokenDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/AccessTokenDecoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/AccessTokenEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/AccessTokenEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/Exception/InvalidAccessTokenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/exception/InvalidAccessTokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/impl/AccessTokenEncoderDecoderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/impl/AccessTokenEncoderDecoderImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/Security/Token/impl/AccessTokenImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/security/token/impl/AccessTokenImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Exceptions/ExerciseNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/ExerciseNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Exceptions/UnauthorizedAccessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/UnauthorizedAccessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Exceptions/WorkoutPlanNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/exceptions/WorkoutPlanNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/ExerciseConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/ExerciseConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/ExerciseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/ExerciseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Interfaces/ExerciseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/interfaces/ExerciseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/Interfaces/WorkoutPlanManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/interfaces/WorkoutPlanManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fontys/demo/business/WorkoutPlanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Integration/ExerciseRepositoryIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/integration/ExerciseRepositoryIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Integration/WorkoutplanIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/integration/WorkoutplanIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/CustomUserDetailsServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/CustomUserDetailsServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ExerciseConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/ExerciseConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/ExerciseServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/ExerciseServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/NotificationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/NotificationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/SubscriptionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/SubscriptionServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Service/WorkoutPlanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/WorkoutPlanServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,10 +141,13 @@
     "Gradle.ExerciseRepositoryIntegrationTest.executor": "Run",
     "Gradle.ExerciseRepositoryIntegrationTest.testSaveExercise.executor": "Run",
     "Gradle.ExerciseServiceTest.executor": "Run",
+    "Gradle.ExerciseServiceTest.testGetExercises_Empty.executor": "Run",
     "Gradle.IndivBES3 [:KeyGeneratorUtil.main()].executor": "Run",
     "Gradle.NotificationServiceTest.testSendSubscriptionNotification.executor": "Run",
     "Gradle.NotificationServiceTest.testSendUnsubscriptionNotification.executor": "Run",
     "Gradle.SubscriptionServiceTest.executor": "Run",
+    "Gradle.SubscriptionServiceTest.testSubscribe_PTNotFound.executor": "Run",
+    "Gradle.SubscriptionServiceTest.testSubscribe_UserNotFound.executor": "Run",
     "Gradle.Tests in 'IndivBES3.test'.executor": "Run",
     "Gradle.UserServiceTest.executor": "Run",
     "Gradle.UserServiceTest.testGetUserById.executor": "Run",
@@ -127,8 +212,8 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CustomUserDetailsServiceTest">
-    <configuration name="CustomUserDetailsServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.SubscriptionServiceTest.testSubscribe_PTNotFound">
+    <configuration name="ExerciseRepositoryIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -141,7 +226,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Service.CustomUserDetailsServiceTest&quot;" />
+            <option value="&quot;integration.ExerciseRepositoryIntegrationTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -152,7 +237,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SubscriptionServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -165,7 +250,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Service.WorkoutPlanServiceTest&quot;" />
+            <option value="&quot;service.SubscriptionServiceTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -176,7 +261,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest.testDeleteWorkoutPlan" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SubscriptionServiceTest.testSubscribe_PTNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -189,7 +274,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Service.WorkoutPlanServiceTest.testDeleteWorkoutPlan&quot;" />
+            <option value="&quot;service.SubscriptionServiceTest.testSubscribe_PTNotFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,7 +285,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SubscriptionServiceTest.testSubscribe_UserNotFound" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -213,7 +298,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;Service.WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success&quot;" />
+            <option value="&quot;service.SubscriptionServiceTest.testSubscribe_UserNotFound&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -224,7 +309,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'IndivBES3.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -236,8 +321,6 @@
         <option name="taskNames">
           <list>
             <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;Service.WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -258,11 +341,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CustomUserDetailsServiceTest" />
-        <item itemvalue="Gradle.WorkoutPlanServiceTest" />
-        <item itemvalue="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlan_Success" />
-        <item itemvalue="Gradle.WorkoutPlanServiceTest.testUpdateWorkoutPlanName_Success" />
-        <item itemvalue="Gradle.WorkoutPlanServiceTest.testDeleteWorkoutPlan" />
+        <item itemvalue="Gradle.SubscriptionServiceTest.testSubscribe_PTNotFound" />
+        <item itemvalue="Gradle.SubscriptionServiceTest.testSubscribe_UserNotFound" />
+        <item itemvalue="Gradle.SubscriptionServiceTest" />
+        <item itemvalue="Gradle.ExerciseRepositoryIntegrationTest" />
+        <item itemvalue="Gradle.Tests in 'IndivBES3.test'" />
       </list>
     </recent_temporary>
   </component>

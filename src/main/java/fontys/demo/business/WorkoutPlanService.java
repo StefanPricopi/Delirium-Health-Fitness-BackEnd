@@ -1,17 +1,17 @@
 package fontys.demo.business;
 
-import fontys.demo.Domain.*;
-import fontys.demo.Domain.UserDomain.User;
-import fontys.demo.Persistence.Entity.ExerciseEntity;
-import fontys.demo.Persistence.Entity.UserEntity;
-import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
-import fontys.demo.Persistence.impl.ExerciseJPARepository;
-import fontys.demo.Persistence.impl.UserJPARepository;
-import fontys.demo.Persistence.impl.WorkoutplanJPARepository;
-import fontys.demo.business.Exceptions.ExerciseNotFoundException;
-import fontys.demo.business.Exceptions.UnauthorizedAccessException;
-import fontys.demo.business.Exceptions.WorkoutPlanNotFoundException;
-import fontys.demo.business.Interfaces.WorkoutPlanManager;
+import fontys.demo.business.exceptions.ExerciseNotFoundException;
+import fontys.demo.business.exceptions.UnauthorizedAccessException;
+import fontys.demo.business.exceptions.WorkoutPlanNotFoundException;
+import fontys.demo.business.interfaces.WorkoutPlanManager;
+import fontys.demo.domain.*;
+import fontys.demo.domain.userDomain.User;
+import fontys.demo.persistence.entity.ExerciseEntity;
+import fontys.demo.persistence.entity.UserEntity;
+import fontys.demo.persistence.entity.WorkoutPlanEntity;
+import fontys.demo.persistence.impl.ExerciseJPARepository;
+import fontys.demo.persistence.impl.UserJPARepository;
+import fontys.demo.persistence.impl.WorkoutplanJPARepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -33,12 +32,13 @@ public class WorkoutPlanService implements WorkoutPlanManager {
         List<WorkoutPlanEntity> workoutPlanEntities = workoutPlanRepository.findAll();
         List<WorkoutPlan> workoutPlans = workoutPlanEntities.stream()
                 .map(this::mapToWorkoutPlanWithUser)
-                .collect(Collectors.toList());
+                .toList();
 
         return GetWorkoutPlanResponse.builder()
                 .workoutPlans(workoutPlans)
                 .build();
     }
+
 
 
 
@@ -52,7 +52,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         WorkoutPlanEntity workoutPlanEntity = WorkoutPlanConverter.convertCreateWorkoutPlanRequestToEntity(request);
-        workoutPlanEntity.setUser(user); // Set the user
+        workoutPlanEntity.setUser(user);
 
         workoutPlanEntity = workoutPlanRepository.save(workoutPlanEntity);
         WorkoutPlan workoutPlan = WorkoutPlanConverter.convertWorkoutPlanEntityToWorkoutPlan(workoutPlanEntity);
@@ -91,11 +91,12 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                         return getExerciseEntity(requestExercise, existingWorkoutPlanEntity);
                     }
                 })
-                .collect(Collectors.toList());
+                .toList();
 
         existingWorkoutPlanEntity.setExercises(updatedExercises);
         workoutPlanRepository.save(existingWorkoutPlanEntity);
     }
+
 
     private static ExerciseEntity getExerciseEntity(Exercise requestExercise, WorkoutPlanEntity existingWorkoutPlanEntity) {
         ExerciseEntity newExercise = new ExerciseEntity();
@@ -157,8 +158,9 @@ public class WorkoutPlanService implements WorkoutPlanManager {
     public List<GetWorkoutPlansByPTResponse> getWorkoutsByPT(Long ptId) {
         return workoutPlanRepository.findAllByUserId(ptId).stream()
                 .map(this::convertToResponse)
-                .collect(Collectors.toList());
+                .toList();
     }
+
 
     private GetWorkoutPlansByPTResponse convertToResponse(WorkoutPlanEntity workoutPlan) {
         return new GetWorkoutPlansByPTResponse(
@@ -168,7 +170,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 workoutPlan.getDurationInDays(),
                 workoutPlan.getExercises().stream()
                         .map(this::convertExerciseToResponse)
-                        .collect(Collectors.toList())
+                        .toList()
         );
     }
 
@@ -198,9 +200,10 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                 .durationInDays(entity.getDurationInDays())
                 .exercises(entity.getExercises().stream()
                         .map(this::mapToExercise)
-                        .collect(Collectors.toList()))
+                        .toList())
                 .build();
     }
+
 
     public Exercise mapToExercise(ExerciseEntity entity) {
         return Exercise.builder()

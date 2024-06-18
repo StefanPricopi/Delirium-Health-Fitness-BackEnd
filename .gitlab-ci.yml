@@ -1,14 +1,9 @@
-
-  # Disable the Gradle daemon for Continuous Integration servers as correctness
-  # is usually a priority over speed in CI environments. Using a fresh
-  # runtime for each build is more reliable since the runtime is completely
-  # isolated from any previous builds.
 variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-  SONAR_TOKEN: "sqp_4eb3d38d7b57444bf4db6b8a87e97c98f74d5212"
+  SONAR_TOKEN: "sqb_f5203242dd094169b447143c8050ac53fd591a3b"
+
 stages:
   - build
-  - docker-build
   - test
   - analyze
 
@@ -29,26 +24,13 @@ jacoco:
   artifacts:
     paths:
       - build/reports/jacoco/test/html/
-
-docker-build:
-  stage: docker-build
-  image: docker:19.03.12
-  services:
-    - docker:dind
-  script:
-    - docker build -t my-local-app-image .
-  only:
-    - master
-  tags:
-    - local
+      - build/reports/jacoco/test/jacocoTestReport.xml
 
 sonarqube:
   stage: analyze
   image: openjdk:latest
   script:
-    - ./gradlew sonarqube -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN
+    - ./gradlew sonarqube -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
   allow_failure: true
   only:
     - master
-
-

@@ -1,7 +1,7 @@
 package fontys.demo.business;
 
-import fontys.demo.Domain.Exercise;
-import fontys.demo.Persistence.Entity.ExerciseEntity;
+import fontys.demo.domain.Exercise;
+import fontys.demo.persistence.entity.ExerciseEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

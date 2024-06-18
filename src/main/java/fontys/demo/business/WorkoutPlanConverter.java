@@ -1,8 +1,8 @@
 package fontys.demo.business;
 
-import fontys.demo.Domain.CreateWorkoutPlanRequest;
-import fontys.demo.Domain.WorkoutPlan;
-import fontys.demo.Persistence.Entity.WorkoutPlanEntity;
+import fontys.demo.domain.CreateWorkoutPlanRequest;
+import fontys.demo.domain.WorkoutPlan;
+import fontys.demo.persistence.entity.WorkoutPlanEntity;
 
 public class WorkoutPlanConverter {
     public static WorkoutPlanEntity convertCreateWorkoutPlanRequestToEntity(CreateWorkoutPlanRequest request) {

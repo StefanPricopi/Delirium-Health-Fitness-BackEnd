@@ -1,7 +1,7 @@
 package fontys.demo.business;
 
-import fontys.demo.Persistence.Entity.UserEntity;
-import fontys.demo.Persistence.impl.UserJPARepository;
+import fontys.demo.persistence.entity.UserEntity;
+import fontys.demo.persistence.impl.UserJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
