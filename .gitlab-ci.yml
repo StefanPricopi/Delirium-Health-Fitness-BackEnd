@@ -30,7 +30,8 @@ sonarqube:
   stage: analyze
   image: openjdk:latest
   script:
-    - ./gradlew sonarqube -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+    ./gradlew -Dsonar.projectKey=IndivS4 -Dsonar.projectName=IndivS4 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml sonarqube
+
   allow_failure: true
   only:
     - master
