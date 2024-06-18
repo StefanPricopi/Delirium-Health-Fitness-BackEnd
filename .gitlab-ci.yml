@@ -1,3 +1,11 @@
+
+  # Disable the Gradle daemon for Continuous Integration servers as correctness
+  # is usually a priority over speed in CI environments. Using a fresh
+  # runtime for each build is more reliable since the runtime is completely
+  # isolated from any previous builds.
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  SONAR_TOKEN: "sqp_4eb3d38d7b57444bf4db6b8a87e97c98f74d5212"
 stages:
   - build
   - docker-build
@@ -43,5 +51,4 @@ sonarqube:
   only:
     - master
 
-variables:
-  SONAR_TOKEN: "sqp_4eb3d38d7b57444bf4db6b8a87e97c98f74d5212"
+

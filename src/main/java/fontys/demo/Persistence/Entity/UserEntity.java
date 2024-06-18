@@ -23,5 +23,7 @@ public class UserEntity {
         private String roles;
         private String email;
 
-    }
+        public UserEntity(long l) {
+        }
+}
 

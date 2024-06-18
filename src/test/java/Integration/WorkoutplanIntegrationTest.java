@@ -53,7 +53,7 @@ public class WorkoutplanIntegrationTest {
                 savedPlan.getId(), "Updated Plan D", "Updated Description", 35, exercises);
 
         // When
-        workoutPlanService.updateWorkoutPlan(savedPlan.getId(), updateRequest);
+        workoutPlanService.updateWorkoutPlan(savedPlan.getId(), updateRequest,1L);
 
         // Then
         Optional<WorkoutPlanEntity> updatedPlan = workoutplanJPARepository.findById(savedPlan.getId());
@@ -71,7 +71,7 @@ public class WorkoutplanIntegrationTest {
         WorkoutPlanEntity savedPlan = workoutplanJPARepository.save(workoutPlan);
 
         // When
-        boolean result = workoutPlanService.deleteWorkoutPlan(savedPlan.getId());
+        boolean result = workoutPlanService.deleteWorkoutPlan(savedPlan.getId(),1L);
 
         // Then
         assertTrue(result);
