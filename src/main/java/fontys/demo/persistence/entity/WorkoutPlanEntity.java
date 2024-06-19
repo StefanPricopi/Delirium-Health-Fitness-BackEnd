@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,7 +31,7 @@ public class WorkoutPlanEntity {
     private int durationInDays;
 
     @OneToMany(mappedBy = "workoutPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ExerciseEntity> exercises;
+    private List<ExerciseEntity> exercises = new ArrayList<>(); // Ensure mutable initialization
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

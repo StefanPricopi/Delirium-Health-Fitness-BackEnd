@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="trying to fix sonar attempt 999999" />
+    <list default="true" id="ea9d9b11-efc6-4f9e-9abf-90ac8c1cae19" name="Changes" comment="trying to fix sonar attempt does it even matter at this point?">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +132,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SubscriptionServiceTest.testSubscribe_PTNotFound">
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="ExerciseRepositoryIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -548,7 +550,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718790463891</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="trying to fix sonar attempt does it even matter at this point?">
+      <option name="closed" value="true" />
+      <created>1718790922528</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1718790922528</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,6 +585,7 @@
     <MESSAGE value="removed unused imports" />
     <MESSAGE value="trying to fix sonar" />
     <MESSAGE value="trying to fix sonar attempt 999999" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to fix sonar attempt 999999" />
+    <MESSAGE value="trying to fix sonar attempt does it even matter at this point?" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to fix sonar attempt does it even matter at this point?" />
   </component>
 </project>

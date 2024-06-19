@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -91,7 +92,7 @@ public class WorkoutPlanService implements WorkoutPlanManager {
                         return getExerciseEntity(requestExercise, existingWorkoutPlanEntity);
                     }
                 })
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new)); // Ensure mutable collection
 
         existingWorkoutPlanEntity.setExercises(updatedExercises);
         workoutPlanRepository.save(existingWorkoutPlanEntity);
