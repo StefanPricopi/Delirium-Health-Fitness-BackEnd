@@ -1,12 +1,11 @@
-variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-
-
 stages:
   - build
   - test
   - build_image
   - sonar
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 build:
   stage: build
@@ -40,7 +39,7 @@ build_image:
 sonar:
   stage: sonar
   script:
-    - ./gradlew sonarqube -Dsonar.host.url="http://localhost:9000" -Dsonar.login="sqp_e94deb8fc9d406e8b05a5f99da055a9b19ff79fd" -Dsonar.java.binaries="build/classes/java/main" -Dsonar.jacoco.reportPaths="build/reports/jacoco/test/jacocoTestReport.xml"
+    - ./gradlew sonarqube -Dsonar.projectKey=test11 -Dsonar.projectName=test1 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_7b1ccd0155f7745a1a98b40f4c57bd4b78bd31e4 -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
   dependencies:
     - test
   allow_failure: true

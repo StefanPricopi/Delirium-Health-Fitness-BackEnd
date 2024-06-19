@@ -44,10 +44,10 @@ test {
 
 sonarqube {
     properties {
-        property "sonar.projectKey", "IndivS4"
-        property "sonar.projectName", "IndivS4"
+        property "sonar.projectKey", "test11"
+        property "sonar.projectName", "test1"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", "sqp_13c78a5ee1ab3165ad5827cec82c520b4f5bf6f9"
+        property "sonar.login", "sqp_7b1ccd0155f7745a1a98b40f4c57bd4b78bd31e4"
         property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
         property "sonar.inclusions", "src/main/java/fontys/demo/business/**"
     }
