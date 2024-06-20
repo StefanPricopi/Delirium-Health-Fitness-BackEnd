@@ -47,6 +47,7 @@ public class SecurityConfig {
                         registry
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/users/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/users/check-username").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/users/login").permitAll()
                                 .requestMatchers("/ws/**").permitAll()
                                 .requestMatchers(SWAGGER_UI_RESOURCES).permitAll()
@@ -76,9 +77,9 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
     }
 }
-

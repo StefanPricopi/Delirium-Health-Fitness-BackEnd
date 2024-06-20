@@ -17,6 +17,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class AuthenticationRequestFilter extends OncePerRequestFilter {
@@ -24,9 +26,22 @@ public class AuthenticationRequestFilter extends OncePerRequestFilter {
     @Autowired
     private AccessTokenDecoder accessTokenDecoder;
 
+    private static final Set<String> EXCLUDED_PATHS = new HashSet<>();
+
+    static {
+        EXCLUDED_PATHS.add("/users/register");
+        EXCLUDED_PATHS.add("/users/check-username");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+
+        String path = request.getRequestURI();
+        if (EXCLUDED_PATHS.contains(path)) {
+            chain.doFilter(request, response);
+            return;
+        }
 
         final String requestTokenHeader = request.getHeader("Authorization");
         if (requestTokenHeader == null || !requestTokenHeader.startsWith("Bearer ")) {
